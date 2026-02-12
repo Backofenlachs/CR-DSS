@@ -1,0 +1,55 @@
+Start
+↓
+Erfassung Kundendaten
+↓
+Erfassung Kreditdaten
+↓
+Validierung Eingaben
+↓
+Berechnung Kennzahlen
+↓
+Scoring anwenden
+↓
+Risikokategorie bestimmen
+↓
+Ergebnis transparent ausgeben
+↓
+Ende
+
+cli:
+--- Credit Risk Decision Support System ---
+Bitte Kundendaten eingeben:
+Alter:
+Nettoeinkommen:
+Fixkosten: 
+Bestehende Kreditdaten:
+Beschäftigungsdauer:
+Gewünschte Kredithöhe:
+Beschäftigungsdauer:
+Gewünschte Kredithöhe:
+Laufzeit:
+Zinssatz:
+--------------------------------------------
+
+Berechnete Kennzahlen:
+
+Neue Kreditrate: 
+Dept-To-Income Ratio (DTI):
+Restbetrag:
+
+Gesamtscore:
+Risikokategorie:
+Empfehlung: 
+----------------------------------------------
+
+
+Kennzahlen berechnungen:
+Haushaltsüberschuss = Einkomme - Fixkosten - bestehende_Kreditraten
+Neue_Kreditrate = Anulitätsformel
+Neue_Gesamtbelastung = bestehende_Kreditrate + neue_Kreditrate 
+DTI = Gesammtbelastung / Einkommen
+Restbetrag = Einkommen - Fixkosten - neue_Gesamtbelastung
+
+
+ToDo:
+Anulitätsformel: Muss noch Mathematisch hergeleitet werden
