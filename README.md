@@ -7,5 +7,12 @@ Credit Risk Decision Support System
 -anfangen zu coden anfangen mit domain layer
 
 programmier reinfolge:
-Alle datenclassen in Domainlayer machen
+  - Alle datenclassen in Domainlayer machen
+  - annuity calculator
+  - scoring service
+  - application layer
+  - CLI
+    core anwendung fertig dannach:
+  - input validation
+  - neue erweiterungen implementieren und planen
 
