@@ -1,0 +1,22 @@
+# ---------------------------------------------------------
+# Commit Message Template
+# ---------------------------------------------------------
+# Format:
+# (type)scope: short description in imperative
+#
+# - optional additional details
+# - explain WHY if necessary
+# - mention TODOs if relevant
+#
+# Types:
+# feat          --> new feature
+# fix           --> bug fix
+# refactor      --> code restructuring (no behavior change)
+# docs          --> documentation / diagrams / ADR
+# chore         --> setup / structure / config
+# test          --> tests added or updated
+#
+# Example:
+# docs(architecture): update v1.0 class diagram
+#
+# ---------------------------------------------------------
