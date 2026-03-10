@@ -2,7 +2,7 @@
 
 Ein modular aufgebautes Entscheidungsunterstützungssystem zur Bewertung von Konsumentenkreditanträgen auf Basis finanzwirtschaftlicher Kennzahlen und eines strukturierten Scoring-Modells.
 
-
+**Status:** V1_0 In entwicklung 
 
 **Ziel des Projekts**
 
@@ -90,21 +90,6 @@ Geplante Erweiterungen:
   - Erweiterung des Scoring-Modells
   - Persistenzschicht
   - API-Schnittstelle
-
-
-# To Do
-- annuity mathematisch herleiten doc erstellen
-- anfangen zu coden anfangen mit domain layer
-
-programmier reinfolge:
-  - Alle datenclassen in Domainlayer machen
-  - annuity calculator
-  - scoring service
-  - application layer
-  - CLI
-    core anwendung fertig dannach:
-  - input validation
-  - neue erweiterungen implementieren und planen
 
 ### Autor: Perseus Palma Jacobs
 
