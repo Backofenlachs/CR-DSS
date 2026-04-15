@@ -55,12 +55,12 @@ package Domain_Layer {
     +total_interest: float
   }
 
-  interface AnnuityCalculationStrategy {
+  interface IAnnuityCalculationStrategy {
     +calculate(p: AnnuityParameters): AnnuityResult
   }
 
   class AnnuityCalculator {
-    -strategy: AnnuityCalculationStrategy
+    -strategy: IAnnuityCalculationStrategy
     +calculate(p: AnnuityParameters): AnnuityResult
   }
 
@@ -88,7 +88,7 @@ package Domain_Layer {
   }
 
   ' Strategy Pattern (implements)
-  AnnuityStandardStrategy ..|> AnnuityCalculationStrategy
+  AnnuityStandardStrategy ..|> IAnnuityCalculationStrategy
 
 }
 ' Layer connections
