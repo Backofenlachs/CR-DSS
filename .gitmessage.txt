@@ -2,7 +2,7 @@
 # Commit Message Template
 # ---------------------------------------------------------
 # Format:
-# (type)scope: short description in imperative
+# type(scope): short description in imperative
 #
 # - optional additional details
 # - explain WHY if necessary

@@ -2,17 +2,17 @@
 
 ## Ziel
 
-Herleitung der Formel für die konstante Annuität $ A $, mit der ein Kredit vollständig getilgt wird.
+Herleitung der Formel für die konstante Annuität $A$, mit der ein Kredit vollständig getilgt wird.
 
 Gegeben:
 
-- Anfangsdarlehen: $ K_0 $
-- Zinssatz pro Periode: $ i $
-- Laufzeit: $ n $ Perioden
+- Anfangsdarlehen: $K_0$
+- Zinssatz pro Periode: $i$
+- Laufzeit: $n$ Perioden
 
 Gesucht:
 
-- Konstante Rate $ A $
+- Konstante Rate $A$
 
 ---
 
@@ -21,17 +21,13 @@ Gesucht:
 Ein Kredit entspricht dem Barwert aller zukünftigen Ratenzahlungen.
 
 
-$
-K_0 = \text{Barwert aller Annuitäten}
-$
+$K_0 = \text{Barwert aller Annuitäten}$
 
 
-Jede Zahlung $ A $, die in Periode $ k $ erfolgt, wird abgezinst:
+Jede Zahlung $A$, die in Periode $k$ erfolgt, wird abgezinst:
 
 
-$
-\frac{A}{(1+i)^k}
-$
+$\frac{A}{(1+i)^k}$
 
 
 Damit ergibt sich:
@@ -157,7 +153,7 @@ Beide Darstellungen sind mathematisch identisch.
 ## Abgrenzung
 ### Numerische und modelltheoretische Wahl der i-Darstellung
 
-Obwohl die Darstellung mit dem Aufzinsungsfaktor $ q = 1+i $ algebraisch äquivalent ist, wird im Projekt bewusst die $ i $-Form
+Obwohl die Darstellung mit dem Aufzinsungsfaktor $q = 1+i$ algebraisch äquivalent ist, wird im Projekt bewusst die $i$-Form
 
 $
 A = K_0 \cdot \frac{i}{1 - (1+i)^{-n}}
@@ -167,9 +163,9 @@ verwendet.
 
 Gründe sind:
 
-1. Der Zinssatz $ i $ ist der ökonomisch primäre Modellparameter.
-2. Die Darstellung vermeidet große Zwischenwerte wie $ q^n $ und ist numerisch stabiler.
-3. Sensitivitäts- und Risikobetrachtungen erfolgen direkt in Bezug auf $ i $.
+1. Der Zinssatz $i$ ist der ökonomisch primäre Modellparameter.
+2. Die Darstellung vermeidet große Zwischenwerte wie $q^n$ und ist numerisch stabiler.
+3. Sensitivitäts- und Risikobetrachtungen erfolgen direkt in Bezug auf $i$.
 
 Die Wahl ist somit sowohl mathematisch als auch modellarchitektonisch begründet.
 
@@ -181,7 +177,7 @@ kann bei sehr kleinen zinssätzen instabil werden -> siehe taylor-aproximation, 
 
 - Höherer Zinssatz → höhere Annuität
 - Längere Laufzeit → geringere Annuität
-- Bei $ i = 0 \: \ A = \frac{K_0}{n} $
+- Bei $i = 0 \: \ A = \frac{K_0}{n}$
 
 ---
 
