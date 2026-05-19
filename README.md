@@ -1,95 +1,263 @@
-# Credit Risk Decision Support System (CR-DSS)
+# CR-DSS
 
-Ein modular aufgebautes Entscheidungsunterstützungssystem zur Bewertung von Konsumentenkreditanträgen auf Basis finanzwirtschaftlicher Kennzahlen und eines strukturierten Scoring-Modells.
+**Credit Risk Decision Support System.**
 
-**Status:** V1_0 In entwicklung 
-
-**Ziel des Projekts**
-
-Das CR-DSS simuliert einen vereinfachten Kreditprüfungsprozess im Retailbanking.
-
-Das System berechnet:
-  - die monatliche Kreditrate (Annuität)
-  - die Debt-to-Income-Ratio (DTI)
-  - den monatlichen Haushaltsüberschuss
-  - einen strukturierten Gesamtrisikoscore
-
-Das Projekt demonstriert:
-  - saubere Architekturprinzipien
-  - Trennung von Fachlogik und Anwendungsschicht
-  - finanzmathematische Modellierung
-  - testgetriebene Entwicklung (TDD)
-  - versionierte Architekturentscheidungen (ADR)
-  - Erweiterbarkeit durch das Strategy Pattern
+> Long-termarchitecture and system integration project.
 
 
+---
 
-## Architekturübersicht
+# What is this?
 
-Das System ist schichtbasiert aufgebaut:
+CR-DSS is my long-term software engineering project.
 
-  - **Domain**
-    Zentrale Fachobjekte (Applicant, Loan, ScoreResult)
+The goal is not to build "yet another fintech app", but to slowly evolve a real technical system over multiple years while learning:
 
-  - **Services**
-    Fachlogik wie Annuitätenberechnung und Scoring
-  
-  - **Application**
-    Orchestrierung der Anwendungslogik
-  
-  - **CLI (main.py)**
-    Benutzerschnittstelle zur Interaktion
+- architecture
+- backend/frontend seperation
+- API design
+- risk calculation logic
+- systemintegration
+- maintainability
+- native engine development
 
-Die Architektur folgt dem Prinzip der klaren Verantwortlichkeitstrennung (Separation of Concerns).
+I use this projec mainly as a parctical engineering playground to explore how larger systems evolve over time.
+
+- Not as a startup.
+- Not as a tutorial clone.
+- Not as a portfolio buzzword project.
+
+More like:
+
+> "What happens if  a motivated developer starts building a system step by step over many years?"
+
+---
+
+# Main Idea
+
+The project simulates a simplified credit risk decision workflow.
+
+Very simplified example:
+
+```text
+Applicant Data
+      ⇓
+Risk Calculations
+      ⇓
+Scoring Logic
+      ⇓
+Decision Output
+```
+
+The important part is not the buisness logic itself.
+
+The important part is the architecture around it.
+
+---
+
+# Main Goals
+
+This project exists to learn and explore:
+
+- modular frontend architecture 
+- API orchestration
+- risk calculation pipelines
+- clean system boundaries
+- runtime/lifecycle conceps
+- native engine integration later on
+
+I intentionally want the project to evolve in phases instead of building everything at once.
+
+---
+
+# Engineering Philosophy
+
+A lot of this project is built around a simple mindset:
+
+- keep things understandable
+- avoid fake complexity
+- avoid overengineering
+- evolve systems slowly
+- document important decisions
+- seperate responsibilities clearly
+- build foundations first
+
+I care much more about:
+
+- stable architecture
+- clarity
+- evolvability
+- understanding systems deeply
+
+than "using the newest framework".
+
+---
+
+# Planned System Architecture
+
+```
+Frontend (custom UI-Engine)
+      ⇓
+Slim4 API Layer
+      ⇓
+Risk Engine
+```
+
+---
+
+# Development Phases
 
 
+## Phase 1 - UI-Engine
 
-## Implementierte Funktionen (Version 1.0)
+### Goal
+Build my own frontend foundation
 
-  - Annuitätendarlehen (konstante Monatsrate)
-  - Berechnung der Debt-to-Income-Ratio
-  - Ermittlung des Haushaltsüberschusses
-  - Punktbasiertes Risikoscoring
-  - Unit-Tests für die Domain-Schicht
+### What I built
+
+- custom Ui runtime
+- mounting engine
+- lifecycle system
+- declarative layouts
+- modular tool architecture
+- architecture documentation
+- ADRs
+- PlantUML diagrams
+
+### Tech 
+
+- vanilla JavaScript
+- jQuery
+- custom architecture
+
+### Status
+
+**Completet** Engine v0.2.0 
+
+repo: `https://github.com/Backofenlachs/UI-Engine.git`
+
+This phase was mainly about refreshing my knowledge about frontend architecture and runtime concepts.
+
+---
+
+## Phase 2 - Python CLI Prototype
+
+### Goal
+
+Build the first actual risk calculation prototype.
+
+### Architecture
+
+```
+input.json
+      ⇓
+python prototype
+      ⇓
+output.json
+```
+
+### Current Focus
+
+- annuity calculations
+- basic economic indicators calculations
+- basic scoring logic
+- deterministic outputs
+- clean data structures
+
+### Why Python?
+
+Because right now speed of iteration matters more than performance.
+
+Python is intentionally treated as prototype layer.
+
+### Status
+
+**Current Phase**
+
+---
+
+## Phase 3 - Slim4 API Layer
+
+### Goal 
+
+Introduce a real backend safety and security layer between frontend and risk engine.
+
+### Focus
+
+- Rest API design
+- DTOs
+- validation 
+- orchestration
+- stateless communication
+- frontend/backend seperation
+- security
+- layter interface for Persistence(Database) Layer
+- 
+### Status
+**Planned**
+
+---
+
+## Phase 4 - Native C++ Risk Engine
+
+### Goal
+
+Replace the Python prototype with dedicated native engine.
 
 
+### Why C++
 
-## Tests
+Because long-term I want to explore:
 
-Tests werden mit pytest ausgeführt:
+- native system design
+- engine architecture
+- performance-oriented computation
+- lower-level engineering
 
-pytest -v
+The C++ engine is not a "maby later" idea.
 
+It is already part of the planned architecture and serves as foundation for high performance Finance Computing like Montecarlo simulation.
 
-Optional mit Coverage-Analyse:
+### Status
 
-pytest --cov=.
+**Planned**
 
+---
 
+# Documentation strategy
 
-## Dokumentation
+This project contains a lot of documentation on purpose.
 
-Architektur- und Fachentscheidungen sind dokumentiert unter:
+Including:
 
-docs/architecture/
+- ADRs
+- architecture sketches
+- PlantUML diagrams
+- implementation notes
+- runtime concepts
 
-Enthalten sind:
-  - Systemarchitektur (v1.0)
-  - Scoring-Modell
-  - Architecture Decision Records (ADR)
+I treat documentation as part of the engineering process itself.
 
+---
 
+# About Me
 
-## Version
+I'm an developer mainly interested in:
 
-Aktuelle Version: 1.0
+- software architecture
+- system design
+- backend/fronted integration
+- long-term engineering
+- understanding systems deeply
 
-Geplante Erweiterungen:
+This project is basically my long-term technical exploration.
 
-  - Unterstützung weiterer Kreditmodelle (Strategy Pattern)
-  - Erweiterung des Scoring-Modells
-  - Persistenzschicht
-  - API-Schnittstelle
+A lot of the project is intentionally built "from scratch" because the goal is not only to use systems - but to understand how systems are build. (Probably also an c++ sockel in the next 10 years hwo nows;)
 
-### Autor: Perseus Palma Jacobs
+# Disclamer
 
+CR-DSS is an educational engineering project.
+
+It is not a production banking system and not financial advice.
+
+The main purpose is learning architecture, system integration and long-term software engineering.
