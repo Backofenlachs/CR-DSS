@@ -1,0 +1,10 @@
+{
+    "application_number": 1,
+    "monthly_net_income": 1800,
+    "monthly_fixed_costs": 1000,
+    "existing_monthly_dept_payments": 200,
+    
+    "loan_amount": 10000,
+    "annual_interest_rate": 0.045,
+    "terms_in_months": 36
+}

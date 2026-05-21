@@ -37,23 +37,8 @@ Focus:
 ## Monthly Annuity
 
 Standard annuity formula for monthly loan payment.
+File: `docs/math/annuity_derivation.md`
 
-\[
-A = P \cdot \frac{r(1+r)^n}{(1+r)^n - 1}
-\]
-
-Where:
-
-- \(A\) = monthly annuity
-- \(P\) = loan amount
-- \(r\) = monthly interest rate
-- \(n\) = number of months
-
-Monthly interest rate:
-
-\[
-r = \frac{\text{annual interest rate}}{12}
-\]
 
 ---
 
@@ -61,7 +46,7 @@ r = \frac{\text{annual interest rate}}{12}
 
 Debt-To-Income ratio including the new loan.
 
-\[
+$
 \text{total\_dti} =
 \frac{
 \text{existing\_monthly\_debt\_payments}
@@ -70,7 +55,7 @@ Debt-To-Income ratio including the new loan.
 }{
 \text{monthly\_net\_income}
 }
-\]
+$
 
 Interpretation:
 - lower is better
@@ -82,16 +67,13 @@ Interpretation:
 
 Remaining income after all obligations.
 
-\[
+$
 \text{residual\_income\_after\_loan} =
-\text{monthly\_net\_income}
--
-\text{monthly\_fixed\_costs}
--
-\text{existing\_monthly\_debt\_payments}
--
+\text{monthly\_net\_income} -
+\text{monthly\_fixed\_costs} -
+\text{existing\_monthly\_debt\_payments} -
 \text{monthly\_annuity}
-\]
+$
 
 Interpretation:
 - measures practical survivability after loan obligations

@@ -2,7 +2,7 @@
 
 **Credit Risk Decision Support System.**
 
-> Long-termarchitecture and system integration project.
+> Long-term architecture and system integration project.
 
 
 ---
@@ -14,14 +14,14 @@ CR-DSS is my long-term software engineering project.
 The goal is not to build "yet another fintech app", but to slowly evolve a real technical system over multiple years while learning:
 
 - architecture
-- backend/frontend seperation
+- backend/frontend separation
 - API design
 - risk calculation logic
-- systemintegration
+- system integration
 - maintainability
 - native engine development
 
-I use this projec mainly as a parctical engineering playground to explore how larger systems evolve over time.
+I use this project mainly as a parctical engineering playground to explore how larger systems evolve over time.
 
 - Not as a startup.
 - Not as a tutorial clone.
@@ -49,7 +49,7 @@ Scoring Logic
 Decision Output
 ```
 
-The important part is not the buisness logic itself.
+The important part is not the business logic itself.
 
 The important part is the architecture around it.
 
@@ -63,7 +63,7 @@ This project exists to learn and explore:
 - API orchestration
 - risk calculation pipelines
 - clean system boundaries
-- runtime/lifecycle conceps
+- runtime/lifecycle concepts
 - native engine integration later on
 
 I intentionally want the project to evolve in phases instead of building everything at once.
@@ -79,7 +79,8 @@ A lot of this project is built around a simple mindset:
 - avoid overengineering
 - evolve systems slowly
 - document important decisions
-- seperate responsibilities clearly
+- separate
+- responsibilities clearly
 - build foundations first
 
 I care much more about:
@@ -100,7 +101,7 @@ Frontend (custom UI-Engine)
       ⇓
 Slim4 API Layer
       ⇓
-Risk Engine
+c++ Risk Engine
 ```
 
 ---
@@ -111,11 +112,11 @@ Risk Engine
 ## Phase 1 - UI-Engine
 
 ### Goal
-Build my own frontend foundation
+Build a reusable frontend foundation
 
 ### What I built
 
-- custom Ui runtime
+- custom UI runtime
 - mounting engine
 - lifecycle system
 - declarative layouts
@@ -132,7 +133,7 @@ Build my own frontend foundation
 
 ### Status
 
-**Completet** Engine v0.2.0 
+**Completed** Engine v0.2.0 
 
 repo: `https://github.com/Backofenlachs/UI-Engine.git`
 
@@ -168,7 +169,7 @@ output.json
 
 Because right now speed of iteration matters more than performance.
 
-Python is intentionally treated as prototype layer.
+Python is intentionally treated as a prototype layer.
 
 ### Status
 
@@ -189,34 +190,31 @@ Introduce a real backend safety and security layer between frontend and risk eng
 - validation 
 - orchestration
 - stateless communication
-- frontend/backend seperation
+- frontend/backend separation
 - security
-- layter interface for Persistence(Database) Layer
-- 
+- future persistence/database integration
+
 ### Status
 **Planned**
 
 ---
 
-## Phase 4 - Native C++ Risk Engine
+## Phase 4 - C++ Risk Engine
 
 ### Goal
 
-Replace the Python prototype with dedicated native engine.
+Replace the Python prototype with dedicated engine.
 
 
 ### Why C++
 
-Because long-term I want to explore:
+The C++ engine is not a "maybe later" idea.
 
-- native system design
-- engine architecture
-- performance-oriented computation
+It is already part of the planned long-term architecture and mainly exists to explore:
+- system design
 - lower-level engineering
-
-The C++ engine is not a "maby later" idea.
-
-It is already part of the planned architecture and serves as foundation for high performance Finance Computing like Montecarlo simulation.
+- performance-oriented computation
+- long-term engine evolution
 
 ### Status
 
@@ -224,7 +222,7 @@ It is already part of the planned architecture and serves as foundation for high
 
 ---
 
-# Documentation strategy
+# Documentation Strategy
 
 This project contains a lot of documentation on purpose.
 
@@ -239,20 +237,24 @@ Including:
 I treat documentation as part of the engineering process itself.
 
 ---
-
 # About Me
 
-I'm an developer mainly interested in:
+I'm mainly interested in:
 
 - software architecture
-- system design
-- backend/fronted integration
+- runtime systems
+- backend/frontend integration
 - long-term engineering
-- understanding systems deeply
+- understanding how systems evolve over time
 
-This project is basically my long-term technical exploration.
+Before CR-DSS I spent years experimenting with:
+- Unity/C# game development
+- OpenGL and C++
+- custom tooling and runtime systems
+- neural network experiments
+- architecture sketches and technical documentation
 
-A lot of the project is intentionally built "from scratch" because the goal is not only to use systems - but to understand how systems are build. (Probably also an c++ sockel in the next 10 years hwo nows;)
+CR-DSS is the long-term continuation of that technical exploration.
 
 # Disclamer
 
