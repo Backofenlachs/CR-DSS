@@ -1,5 +1,10 @@
 class ScoringModel:
 
+    REQUIRED_METRICS = [
+        "total_dti",
+        "residual_income_after_loan"
+    ]
+
     def __init__(self):
         print("create ScoringModel")
         pass
