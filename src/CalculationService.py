@@ -15,18 +15,29 @@ class CalculationService:
             "residual_income_after_loan": ResidualIncomeAfterLoanMetric()
         }
 
-        pass
 
-    def calculate(self, loan_amount, interest_rate, periods) -> dict[str, float]:
-        return self.metrics_registry["monthly_annuity"].calculate(loan_amount, interest_rate, periods)
-    
+    def start(self, APPLICANT_DATA):
+        data = APPLICANT_DATA.copy()
+        results = {}
 
-    def calculate_total_dti(self, monthly_net_income, new_monthly_annuity, existing_monthly_debt_payments ) -> float:
-        return self.metrics_registry["total_dti"].calculate(monthly_net_income, new_monthly_annuity, existing_monthly_debt_payments)
+        # LVL 1
+        annuity_calculation_results = self.metrics_registry["monthly_annuity"].calculate(data)
+        data.update(annuity_calculation_results)
+        #results.update(annuity_calculation_results) # braucht aktuell nur die anderen zwei metrics
+
+        # LVL 2
+        total_dti = self.metrics_registry['total_dti'].calculate(data)
+        data.update(total_dti)
+        results.update(total_dti)
+
+        residual_income_after_loan = self.metrics_registry['residual_income_after_loan'].calculate(data)
+        data.update(residual_income_after_loan)
+        results.update(residual_income_after_loan)
 
 
-    def calculate_resuidal_income_after_loan(self, monthly_net_income, monthly_fixed_costs, existing_monthly_debt_payments, monthly_annuity) -> float:
-        return self.metrics_registry["residual_income_after_loan"].calculate(monthly_net_income, monthly_fixed_costs, existing_monthly_debt_payments, monthly_annuity)
+        #print(f"APPLICANT_DATA, (after calculations): {data}")
+        #print(f"Calculation Results {results}")
+        return results
 
 
     def required_inputs(self, metrics: list[str]) -> list[str]:
@@ -49,8 +60,6 @@ class CalculationService:
                     required_inputs.append(dependency_input)
 
         return required_inputs
-    
-
 
 #CalculationMetrics => CalculationService
 # because later Interface

@@ -1,17 +1,23 @@
 class MonthlyAnnuityMetric:
     
+    OUTPUT_KEYS = [
+        "monthly_annuity",
+        "total_repayment",
+        "total_interest"
+    ]
+
     REQUIRED_INPUTS = [
         "loan_amount",
-        "interest_rate",
-        "periods"
+        "annual_interest_rate",
+        "loan_term_months"
     ]
 
     REQUIRED_METRICS = []
 
-    def calculate(self, loan_amount, interest_rate, periods) -> dict[str, float]:
-        K0 = loan_amount
-        i = interest_rate
-        n = periods
+    def calculate(self, data) -> dict[str, float]:
+        K0 = data['loan_amount']
+        i = data['annual_interest_rate'] / 12
+        n = data['loan_term_months']
 
         if i == 0:
             monthly_payment = K0 / n
@@ -26,7 +32,7 @@ class MonthlyAnnuityMetric:
         total_interest = total_payment - K0
 
         return {
-            "monthly_payment": monthly_payment,
-            "total_payment": total_payment,
+            "monthly_annuity": monthly_payment,
+            "total_repayment": total_payment,
             "total_interest": total_interest
         }
