@@ -3,7 +3,7 @@ import json
 class IOHandler:
 
     def __init__(self):
-        print("created IO-Handler")
+        print("create IO-Handler")
         pass
     
     def json_IO_read(self, file) -> dict:

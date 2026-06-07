@@ -2,7 +2,7 @@
 from CalculationService import CalculationService
 from IOHandler import IOHandler 
 from ScoringModel import ScoringModel
-
+from MetricDependencyResolver import MetricDependencyResolver
 def MissingInputError(missing_inputs):
     return print(f"missing inputs: {missing_inputs}")
 
@@ -16,14 +16,16 @@ if "__main__" == "__main__":
     # read Input
     APPLICANT_DATA = io.json_IO_read('src/loan-request.json');  
 
-    # resolve dependencies
-    REQUIRED_INPUTS = calc.required_inputs(score.REQUIRED_METRICS)
-    
+    dm = MetricDependencyResolver()
+    level = dm.planLevels(score.REQUIRED_METRICS, calc.metrics_registry)
+    #print(f"Result: {level}")
+
     # validate inputs
-    io.validate_required_inputs(REQUIRED_INPUTS, APPLICANT_DATA)
+    io.validate_required_inputs(level['required_inputs'], APPLICANT_DATA)
     
     # calculations
-    result = calc.start(APPLICANT_DATA)
+    result = calc.start(score.REQUIRED_METRICS, APPLICANT_DATA, level['levels'])
+    #print(f"result{result}")
 
     scoring_result = score.evaluate(result['total_dti'], result['residual_income_after_loan'])
 

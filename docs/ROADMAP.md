@@ -1,6 +1,29 @@
 # CR-DSS Roadmap
 
-## Phase 1 — UI-Engine
+## Phase 1 — Domain Exploration & initial Architecture
+Status: **Completed**
+
+Estimated time: a few weeks
+Actual time needed: 8 weeks
+
+- Understand the purpose of a CR-DSS
+- Explore how loan applications are evaluate in practice
+- Identify relevant risk categories and financial indicators
+- Research the required financial and mathematical concepts (annuities, risk metrics)
+- Identify relevant risk categories and scoring approaches
+- Evaluate potential technology stacks
+- Learn Python fundamentals for prototyping
+- Create the first high-level architecture sketches
+- Define the initial project vision, scope, and system layers
+
+### Outcome
+- Initial CR-DSS concept
+- First architecture foundation
+- Technology stack decision
+- Domain understanding for future scoring models
+- Documentation and development strategy
+
+## Phase 2 — UI-Engine
 Status: **Completed**
 
 Estimated time: 6–8 weeks  
@@ -17,16 +40,17 @@ Actual time needed: 7 weeks
 
 ---
 
-## Phase 2 — Python Scoring Prototype
+## Phase 3 — Python Scoring Prototype
 Status: **In Progress**
 
-Estimated time: 4–6 weeks
+Estimated time: 4–6 weeks -> aktuell in der 2woche
 
 - [x] Create first scoring prototype
 - [x] Implement first scoring model
 - [x] Create ADR-0001
 - [x] Separate scoring pipeline
-- [ ] Introduce `required_metrics` (to handle reverse dependencies)
+- [x] Introduce `required_metrics` (to handle reverse dependencies)
+- [x] Introduce Calculation Planning
 - [ ] Add second scoring model
 - [ ] Multiple scoring model selection
 - [ ] Standardize scoring model interfaces
@@ -34,7 +58,7 @@ Estimated time: 4–6 weeks
 
 ---
 
-## Phase 3 — Validation & Robustness of the Scoring Prototype
+## Phase 4 — Validation & Robustness of the Scoring Prototype
 Status: **Planned**
 
 Estimated time: 4–6 weeks
@@ -48,7 +72,7 @@ Estimated time: 4–6 weeks
 
 ---
 
-## Phase 4 — GUI Integration using the UI-Engine
+## Phase 5 — GUI Integration using the UI-Engine
 Status: **Planned**
 
 Estimated time: 1 week
@@ -60,7 +84,7 @@ Estimated time: 1 week
 
 ---
 
-## Phase 5 — Introduce Slim4 as a Lightweight Server Layer
+## Phase 6 — Introduce Slim4 as a Lightweight Server Layer
 Status: **Planned**
 
 Estimated time: 3 weeks
@@ -76,7 +100,7 @@ Estimated time: 3 weeks
 
 ---
 
-## Phase 6 — Introduce the Third Scoring Model
+## Phase 7 — Introduce the Third Scoring Model
 Status: **Planned**
 
 - [ ] Implement first larger scoring matrix
@@ -85,7 +109,7 @@ Status: **Planned**
 
 ---
 
-## Phase 7 — Frontend Stabilization & Multi-Model Support
+## Phase 8 — Frontend Stabilization & Multi-Model Support
 Status: **Planned**
 
 - [ ] Improve frontend stability
@@ -94,7 +118,7 @@ Status: **Planned**
 
 ---
 
-## Phase 8 — Server Layer Stabilization
+## Phase 9 — Server Layer Stabilization
 Status: **Planned**
 
 - [ ] Improve API stability
@@ -104,7 +128,7 @@ Status: **Planned**
 
 ---
 
-## Phase 9 — Optional Advanced Scoring Methods
+## Phase 10 — Optional Advanced Scoring Methods
 Status: **In Discussion**
 
 - [ ] Introduce more complex scoring methods
@@ -118,7 +142,7 @@ Notes:
 
 ---
 
-## Phase 10 — Preparation for the C++ Risk Engine
+## Phase 11 — Preparation for the C++ Risk Engine
 Status: **Planned**
 
 - [ ] Ensure the Python prototype has a stable architecture foundation
@@ -127,7 +151,7 @@ Status: **Planned**
 
 ---
 
-## Phase 11 — Initial C++ Risk Engine Implementation
+## Phase 12 — Initial C++ Risk Engine Implementation
 Status: **Future Planned**
 
 Planned start:

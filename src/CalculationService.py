@@ -6,7 +6,7 @@ class CalculationService:
     
 
     def __init__(self):
-        print ("Created Calculation Metrics")
+        print ("created calculation Metrics")
 
 
         self.metrics_registry = {
@@ -16,27 +16,21 @@ class CalculationService:
         }
 
 
-    def start(self, APPLICANT_DATA):
+    def start(self, REQUIRED_METRICS, APPLICANT_DATA, LEVELS):
         data = APPLICANT_DATA.copy()
         results = {}
 
-        # LVL 1
-        annuity_calculation_results = self.metrics_registry["monthly_annuity"].calculate(data)
-        data.update(annuity_calculation_results)
-        #results.update(annuity_calculation_results) # braucht aktuell nur die anderen zwei metrics
+        for x in reversed(LEVELS):
+            for y in x:
 
-        # LVL 2
-        total_dti = self.metrics_registry['total_dti'].calculate(data)
-        data.update(total_dti)
-        results.update(total_dti)
+                metrics = self.metrics_registry[y].calculate(data)
+                data.update(metrics)
 
-        residual_income_after_loan = self.metrics_registry['residual_income_after_loan'].calculate(data)
-        data.update(residual_income_after_loan)
-        results.update(residual_income_after_loan)
+                for ri in REQUIRED_METRICS:
+                    
+                    if (y == ri):
+                        results.update(metrics) # nur wenn metrics augefragt wurde über RequiredInputs wird es als result mitgegeben.
 
-
-        #print(f"APPLICANT_DATA, (after calculations): {data}")
-        #print(f"Calculation Results {results}")
         return results
 
 
