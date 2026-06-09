@@ -1,7 +1,7 @@
 # ADR-0001: Introduce Scoring Pipeline Architecture
 
 ## Status
-**Proposed**
+**Accepted**
 
 Date: 23.05.2026
 
