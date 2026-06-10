@@ -1,6 +1,7 @@
 from calculation_metrics.monthly_annuity_metric import MonthlyAnnuityMetric
 from calculation_metrics.residual_income_metric import ResidualIncomeAfterLoanMetric
 from calculation_metrics.total_dti_metric import TotalDtiMetric
+from calculation_metrics.reserve_coverage_months_metric import ReserveCoverageMonthsMetric
 
 class CalculationService:
     
@@ -12,7 +13,8 @@ class CalculationService:
         self.metrics_registry = {
             "monthly_annuity": MonthlyAnnuityMetric(),
             "total_dti": TotalDtiMetric(),
-            "residual_income_after_loan": ResidualIncomeAfterLoanMetric()
+            "residual_income_after_loan": ResidualIncomeAfterLoanMetric(),
+            "reserve_coverage_months": ReserveCoverageMonthsMetric()
         }
 
 
