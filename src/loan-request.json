@@ -2,7 +2,7 @@
     "application_number": "...",
 
     "monthly_net_income": 1400,
-    "existing_monthly_debt_payments":  800,
+    "existing_monthly_debt_payments":  0,
     "monthly_fixed_costs": 700,
  
     "loan_amount": 10000,

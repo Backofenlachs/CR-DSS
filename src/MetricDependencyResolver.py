@@ -50,7 +50,7 @@ class MetricDependencyResolver:
             lvl_index += 1
 
         return {
-            "levels": levels,
+            "calculation_plan": levels,
             "required_inputs": required_inputs,
             "processed_metrics": processed_metrics
         }

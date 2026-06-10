@@ -9,8 +9,10 @@ class ScoringModel:
         print("create ScoringModel")
         pass
 
-    def evaluate(self, total_dti, residual_income_after_loan) -> str:
+    def evaluate(self, data) -> str:
         
+        total_dti = data['total_dti']
+        residual_income_after_loan = data['residual_income_after_loan']
         ## results
         
         if (total_dti <= 0.35 and residual_income_after_loan >= 500):
