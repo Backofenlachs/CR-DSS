@@ -4,6 +4,9 @@
     "monthly_net_income": 1400,
     "existing_monthly_debt_payments":  0,
     "monthly_fixed_costs": 700,
+    "cash_reserve": 400,
+    "employment_months": 4,
+    "age": 21,
  
     "loan_amount": 10000,
     "annual_interest_rate": 0.07,
