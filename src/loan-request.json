@@ -1,5 +1,6 @@
 {
     "application_number": "...",
+    "scoring_model": "v0.2.0",
 
     "monthly_net_income": 1400,
     "existing_monthly_debt_payments":  0,

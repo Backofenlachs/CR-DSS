@@ -1,6 +1,6 @@
-class ScoringModel:
+class ScoringModel1:
 
-    REQUIRED_METRICS = [
+    REQUIRED_DATA = [
         "total_dti",
         "residual_income_after_loan"
     ]

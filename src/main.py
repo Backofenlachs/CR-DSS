@@ -1,25 +1,27 @@
 
 from CalculationService import CalculationService
 from IOHandler import IOHandler 
-from ScoringModel import ScoringModel
-from scoring_metrics.scoring_metrics_v0_2_0 import ScoringModel2
 from MetricDependencyResolver import MetricDependencyResolver
+from ScoringService import ScoringService
+
 
 if __name__ == "__main__":
     # Services
     io = IOHandler()
     calc = CalculationService()
-    score = ScoringModel2()
+    score = ScoringService()
     dm = MetricDependencyResolver()
 
 
     # read Input
     APPLICANT_DATA = io.json_IO_read('src/loan-request.json');  
 
-    # resolve Metric Dependencies
-    DEPENDENCY_PLAN = dm.buildDependencyPlan(score.REQUIRED_DATA, calc.metrics_registry)
+    # validate and select Scoring Model
+    score.select(APPLICANT_DATA["scoring_model"])
 
-    #allInputs = DEPENDENCY_PLAN['required_inputs'] + score.REQUIRED_INPUTS
+    # resolve Metric Dependencies
+    DEPENDENCY_PLAN = dm.buildDependencyPlan(score.getRequiredData(), calc.metrics_registry)
+
     # validate inputs
     io.validate_required_inputs(DEPENDENCY_PLAN['required_inputs'], APPLICANT_DATA)
     
@@ -27,14 +29,12 @@ if __name__ == "__main__":
     # calculations
     CALCULATION_RESULT = calc.start(DEPENDENCY_PLAN['required_metrics'], APPLICANT_DATA, DEPENDENCY_PLAN['calculation_plan'])
 
-    #print(f"CalculationResults: {CALCULATION_RESULT}")
 
     # merge the calculationresults and the needed inputs in scoringData
     ScoringData = CALCULATION_RESULT.copy()
     for required_input in DEPENDENCY_PLAN['scoring_inputs']:
         ScoringData[required_input] = APPLICANT_DATA[required_input]
 
-    #print(ScoringData)
     # Scoring
     SCORE_RESULT = score.evaluate(ScoringData)
 
