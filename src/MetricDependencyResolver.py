@@ -1,5 +1,28 @@
 class MetricDependencyResolver:
 
+    def buildDependencyPlan(self, requiredData, metricsRegistry):
+        required_inputs = []
+        required_metrics = []
+        
+        # trennen von metrics und inputs
+        for data_name in requiredData:
+            if data_name in metricsRegistry:
+                required_metrics.append(data_name)
+            else:
+                required_inputs.append(data_name)
+
+        # resolve metrics dependencies
+
+        levels = self.planLevels(required_metrics, metricsRegistry)
+        
+        return {
+            "calculation_plan": list(reversed(levels['calculation_plan'])),
+            "required_inputs": required_inputs + levels['required_inputs'],
+            "scoring_inputs": required_inputs,
+            "required_metrics": required_metrics,
+            "processed_metrics": levels['processed_metrics']
+        }
+
     def planLevels(self, requiredMetrics, metricsRegistry):
         levels = [requiredMetrics]
         processed_metrics = {metric: 0 for metric in requiredMetrics}

@@ -22,7 +22,7 @@ class CalculationService:
         data = APPLICANT_DATA.copy()
         results = {}
 
-        for level in reversed(CALCULATION_PLAN):
+        for level in CALCULATION_PLAN:
             for metrics_name in level:
 
                 metrics = self.metrics_registry[metrics_name].calculate(data)

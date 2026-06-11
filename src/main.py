@@ -17,22 +17,22 @@ if __name__ == "__main__":
     APPLICANT_DATA = io.json_IO_read('src/loan-request.json');  
 
     # resolve Metric Dependencies
-    DEPENDENCY_PLAN = dm.planLevels(score.REQUIRED_METRICS, calc.metrics_registry)
+    DEPENDENCY_PLAN = dm.buildDependencyPlan(score.REQUIRED_DATA, calc.metrics_registry)
 
-    allInputs = DEPENDENCY_PLAN['required_inputs'] + score.REQUIRED_INPUTS
+    #allInputs = DEPENDENCY_PLAN['required_inputs'] + score.REQUIRED_INPUTS
     # validate inputs
-    io.validate_required_inputs(allInputs, APPLICANT_DATA)
+    io.validate_required_inputs(DEPENDENCY_PLAN['required_inputs'], APPLICANT_DATA)
     
 
     # calculations
-    CALCULATION_RESULT = calc.start(score.REQUIRED_METRICS, APPLICANT_DATA, DEPENDENCY_PLAN['calculation_plan'])
+    CALCULATION_RESULT = calc.start(DEPENDENCY_PLAN['required_metrics'], APPLICANT_DATA, DEPENDENCY_PLAN['calculation_plan'])
 
     #print(f"CalculationResults: {CALCULATION_RESULT}")
 
-    # all scoring data that scoring model2 needs
+    # merge the calculationresults and the needed inputs in scoringData
     ScoringData = CALCULATION_RESULT.copy()
-    for ri in score.REQUIRED_INPUTS:
-        ScoringData[ri] = APPLICANT_DATA[ri]
+    for required_input in DEPENDENCY_PLAN['scoring_inputs']:
+        ScoringData[required_input] = APPLICANT_DATA[required_input]
 
     #print(ScoringData)
     # Scoring
@@ -47,4 +47,4 @@ if __name__ == "__main__":
 
     # Write Output
     io.json_IO_write('loan-result.json', applicant_result)
-    print(f"Risk Assessment Descision: {SCORE_RESULT}")    
+    print(f"Risk Assessment Decision: {SCORE_RESULT}")    

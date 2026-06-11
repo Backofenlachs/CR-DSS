@@ -11,6 +11,14 @@ class ScoringModel2:
         "reserve_coverage_months",
     ]
 
+    REQUIRED_DATA = [
+        "employment_months",
+        "age",
+        "total_dti",
+        "residual_income_after_loan",
+        "reserve_coverage_months",
+    ]
+
     def dtiRisk(self, dti):
         if dti <= 0.30:   return 0
         elif dti <= 0.40: return 10
