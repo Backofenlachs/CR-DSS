@@ -1,6 +1,5 @@
-from scoring_metrics.scoring_metrics_v0_1_0 import ScoringModel1
-from scoring_metrics.scoring_metrics_v0_2_0 import ScoringModel2
-
+from scoring_models.scoring_model_v0_1_0 import ScoringModel1
+from scoring_models.scoring_model_v0_2_0 import ScoringModel2
 
 class ScoringService:
     SCORING_MODEL_REGISTRY = {
@@ -20,7 +19,7 @@ class ScoringService:
 
         self.activeModel = self.SCORING_MODEL_REGISTRY[scoring_model_name]()
 
-    def getRequiredData(self):
+    def getRequiredData(self) ->list[str]:
         if self.activeModel is None:
             raise ValueError(
                 "[ScoringService.getRequiredData] no scoring model selected"

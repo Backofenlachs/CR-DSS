@@ -1,0 +1,118 @@
+@startuml
+
+title CR-DSS - Class Diagram v1.0 (only CLI)
+
+top to bottom direction
+
+package Presentation_Layer {
+  class CLI
+}
+
+package Application_Layer {
+    'früher Inputmodel
+    class CreditEvaluationRequest <<RequestModel>> {
+        +principal: float
+        +interest_rate: float
+        +duration_months: int
+        +age: int
+        +monthly_income: float
+        +fixed_costs: float
+        +existing_loans: float
+        +employment_years: int
+    }
+    class CreditEvaluationService {
+        -annuity_service: Service_Layer.AnnuityService
+        -scoring_service: Service_Layer.ScoringService
+        +evaluateCredit(input: CreditEvaluationRequest): Domain_Layer.ScoreResult
+    }
+}
+
+package Service_Layer {
+
+  class AnnuityService {
+    -toParameters(loan: Domain_Layer.Loan): Domain_Layer.AnnuityParameters
+    +calculate(loan: Domain_Layer.Loan): Domain_Layer.AnnuityResult
+  }
+
+  class ScoringService {
+    -calculate_dti(applicant: Domain_Layer.Applicant, loan: Domain_Layer.Loan): float
+    +calculate_score(applicant: Domain_Layer.Applicant, loan: Domain_Layer.Loan): Domain_Layer.ScoreResult
+    -classify_risk(score: int): string
+  }
+}
+
+package Domain_Layer {
+
+  class AnnuityParameters <<ValueObject>> {
+    +principal: float
+    +interest_rate: float
+    +periods: int
+  }
+
+  class AnnuityResult <<ValueObject>> {
+    +monthly_payment: float
+    +total_payment: float
+    +total_interest: float
+  }
+
+  interface IAnnuityCalculationStrategy {
+    +calculate(p: AnnuityParameters): AnnuityResult
+  }
+
+  class AnnuityCalculator {
+    -strategy: IAnnuityCalculationStrategy
+    +calculate(p: AnnuityParameters): AnnuityResult
+  }
+
+  class AnnuityStandardStrategy
+
+  class Loan <<dataclass>> {
+    +principal: float
+    +interest_rate: float
+    +duration_months: int
+  }
+
+  class Applicant <<dataclass>> {
+    +age: int
+    +name: string
+    +monthly_income: float
+    +fixed_costs: float
+    +existing_loans: float
+    +employment_years: int
+  }
+
+  class ScoreResult <<dataclass>> {
+    +total_score: int
+    +risk_category: string
+    +breakdown: string
+  }
+
+  ' Strategy Pattern (implements)
+  AnnuityStandardStrategy ..|> IAnnuityCalculationStrategy
+
+}
+' Layer connections
+'Presentation_Layer -[Hidden]-> Application_Layer
+'Application_Layer -[Hidden]-> Service_Layer
+'Service_Layer -[Hidden]-> Domain_Layer
+
+'Presentation uses Application
+Presentation_Layer.CLI ..> Application_Layer.CreditEvaluationRequest : parse args
+Presentation_Layer.CLI ..> Application_Layer.CreditEvaluationService : calls
+
+
+' Application uses Service
+Application_Layer.CreditEvaluationService ..> Service_Layer.AnnuityService
+Application_Layer.CreditEvaluationService ..> Service_Layer.ScoringService
+
+' Service uses domain
+Service_Layer.AnnuityService ..> Domain_Layer.AnnuityCalculator
+Service_Layer.AnnuityService ..> Domain_Layer.AnnuityParameters
+Service_Layer.AnnuityService ..> Domain_Layer.AnnuityResult
+Service_Layer.AnnuityService ..> Domain_Layer.Loan
+
+Service_Layer.ScoringService ..> Domain_Layer.Applicant
+Service_Layer.ScoringService ..> Domain_Layer.Loan
+Service_Layer.ScoringService ..> Domain_Layer.ScoreResult
+
+@enduml

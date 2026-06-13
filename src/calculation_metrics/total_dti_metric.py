@@ -1,6 +1,10 @@
-class TotalDtiMetric:
+from calculation_metrics.calculation_metric import CalculationMetric
 
-    OUTPUT_KEYS = "total_dti"
+class TotalDtiMetric(CalculationMetric):
+
+    OUTPUT_KEYS = [
+        "total_dti"
+    ]
 
     REQUIRED_INPUTS = [
         "monthly_net_income",
@@ -11,7 +15,7 @@ class TotalDtiMetric:
         "monthly_annuity"
     ]
 
-    def calculate(self, data) -> float:
+    def calculate(self, data):
         total_monthly_debt_payments = data['existing_monthly_debt_payments'] + data['monthly_annuity']
 
         total_dti = total_monthly_debt_payments / data['monthly_net_income']

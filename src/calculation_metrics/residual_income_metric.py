@@ -1,6 +1,10 @@
-class ResidualIncomeAfterLoanMetric:
+from calculation_metrics.calculation_metric import CalculationMetric
 
-    OUTPUT_KEYS = "residual_income_after_loan"
+class ResidualIncomeAfterLoanMetric(CalculationMetric):
+
+    OUTPUT_KEYS = [
+        "residual_income_after_loan"
+    ]
 
     REQUIRED_INPUTS = [
         "monthly_net_income",

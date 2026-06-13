@@ -1,31 +1,44 @@
+from dataclasses import dataclass, field
+
+@dataclass(frozen=True)
+class LevelPlan:
+    calculation_plan: list[list[str]]
+    required_inputs: list[str]
+    processed_metrics: dict[str, int]
+
+@dataclass(frozen=True)
+class MetricDependencyPlan(LevelPlan):
+    scoring_required_inputs: list[str]
+    scoring_required_metrics: list[str]
+
 class MetricDependencyResolver:
 
-    def buildDependencyPlan(self, requiredData, metricsRegistry):
+    def buildDependencyPlan(self, required_data, metrics_registry) -> MetricDependencyPlan:
         required_inputs = []
         required_metrics = []
         
         # trennen von metrics und inputs
-        for data_name in requiredData:
-            if data_name in metricsRegistry:
+        for data_name in required_data:
+            if data_name in metrics_registry:
                 required_metrics.append(data_name)
             else:
                 required_inputs.append(data_name)
 
         # resolve metrics dependencies
 
-        levels = self.planLevels(required_metrics, metricsRegistry)
+        levels :LevelPlan = self.planLevels(required_metrics, metrics_registry)
         
-        return {
-            "calculation_plan": list(reversed(levels['calculation_plan'])),
-            "required_inputs": required_inputs + levels['required_inputs'],
-            "scoring_inputs": required_inputs,
-            "required_metrics": required_metrics,
-            "processed_metrics": levels['processed_metrics']
-        }
+        return MetricDependencyPlan(
+            calculation_plan = list(reversed(levels.calculation_plan)),
+            required_inputs = required_inputs + levels.required_inputs,
+            processed_metrics = levels.processed_metrics,
+            scoring_required_inputs= required_inputs,
+            scoring_required_metrics= required_metrics
+        )
 
-    def planLevels(self, requiredMetrics, metricsRegistry):
-        levels = [requiredMetrics]
-        processed_metrics = {metric: 0 for metric in requiredMetrics}
+    def planLevels(self, required_metrics, metrics_registry) -> LevelPlan:
+        levels = [required_metrics]
+        processed_metrics = {metric: 0 for metric in required_metrics}
         required_inputs = []
 
         lvl_index = 0
@@ -38,7 +51,7 @@ class MetricDependencyResolver:
             next_level = []
 
             for metric_name in current_level:
-                metric = metricsRegistry[metric_name]
+                metric = metrics_registry[metric_name]
 
                 for input_name in metric.REQUIRED_INPUTS:
                     if input_name not in required_inputs:
@@ -72,8 +85,8 @@ class MetricDependencyResolver:
 
             lvl_index += 1
 
-        return {
-            "calculation_plan": levels,
-            "required_inputs": required_inputs,
-            "processed_metrics": processed_metrics
-        }
+        return LevelPlan(
+            calculation_plan = levels,
+            required_inputs = required_inputs,
+            processed_metrics = processed_metrics
+        )

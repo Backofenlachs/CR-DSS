@@ -1,3 +1,11 @@
 __pycache__/
 *.pyc
-__sketches/
+venv/
+.venv/
+
+#IDE
+.vscode/
+.idea/
+
+# Runtime Output
+data/loan-result.json 
