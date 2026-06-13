@@ -41,9 +41,10 @@ Actual time needed: 7 weeks
 ---
 
 ## Phase 3 — Python Scoring Prototype
-Status: **In Progress**
+Status: **Completed**
 
-Estimated time: 4–6 weeks -> aktuell in der 4woche
+Estimated time: 4–6 weeks 
+Actual time needed: 4,5 weeks
 
 - [x] Create first scoring prototype
 - [x] Implement first scoring model
@@ -53,15 +54,15 @@ Estimated time: 4–6 weeks -> aktuell in der 4woche
 - [x] Introduce Calculation Planning
 - [x] Add second scoring model
 - [x] Multiple scoring model selection
-- [ ] Standardize CalculationMetrics interfaces
-- [ ] Introduce model versioning
+- [x] Standardize CalculationMetrics interfaces
+- [x] Introduce model versioning
 
 ---
 
 ## Phase 4 — Validation & Robustness of the Scoring Prototype
-Status: **Planned**
+Status: **In Progress**
 
-Estimated time: 4–6 weeks
+Estimated time: 4–6 weeks -> just started
 
 - [ ] Input validation
 - [ ] Missing input handling

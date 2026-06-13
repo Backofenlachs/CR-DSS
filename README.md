@@ -55,20 +55,6 @@ The important part is the architecture around it.
 
 ---
 
-# Main Goals
-
-This project exists to learn and explore:
-
-- modular frontend architecture 
-- API orchestration
-- risk calculation pipelines
-- clean system boundaries
-- runtime/lifecycle concepts
-- native engine integration later on
-
-I intentionally want the project to evolve in phases instead of building everything at once.
-
----
 
 # Engineering Philosophy
 
@@ -87,10 +73,46 @@ I care much more about:
 
 - stable architecture
 - clarity
-- evolvability
+- evolvalbility
 - understanding systems deeply
 
 than "using the newest framework".
+
+---
+
+# Project Background
+
+I'm mainly interested in:
+
+- software architecture
+- runtime systems
+- backend/frontend integration
+- long-term engineering
+- understanding how systems evolve over time
+
+Before CR-DSS I spent years experimenting with:
+- Unity/C# game development
+- OpenGL and C++
+- custom tooling and runtime systems
+- neural network experiments
+- architecture sketches and technical documentation
+
+CR-DSS is the long-term continuation of that technical exploration.
+
+---
+
+# Main Goals
+
+This project exists to learn and explore:
+
+- modular frontend architecture 
+- API orchestration
+- risk calculation pipelines
+- clean system boundaries
+- runtime/lifecycle concepts
+- native engine integration later on
+
+I intentionally want the project to evolve in phases instead of building everything at once.
 
 ---
 
@@ -108,117 +130,58 @@ c++ Risk Engine
 
 # Development Phases
 
+CR-DSS is intentionally developed and divided into many smaller phases. This makes progress easier to track, allows
+individual milestones to be completed incrementally, and helps the project evolve in a controlled manner over time.
 
-## Phase 1 - UI-Engine
+## Phase 1 — Domain Exploration & Architecture
 
-### Goal
-Build a reusable frontend foundation
+- Credit risk research
+- Initial architecture design
+- Technology evaluation
 
-### What I built
+**Status:** Completed
 
-- custom UI runtime
-- mounting engine
-- lifecycle system
-- declarative layouts
-- modular tool architecture
-- architecture documentation
-- ADRs
-- PlantUML diagrams
 
-### Tech 
+## Phase 2 — UI-Engine
 
-- vanilla JavaScript
-- jQuery
-- custom architecture
-
-### Status
-
-**Completed** Engine v0.2.0 
+- Development of a standalone frontend architecture prototype
+- Runtime and lifecycle concepts
+- Modular UI composition
+  
+**Status:** Completed
 
 repo: `https://github.com/Backofenlachs/UI-Engine.git`
 
-This phase was mainly about refreshing my knowledge about frontend architecture and runtime concepts.
+## Phase 3 — Python Scoring Prototype
 
----
+- Risk calculation pipline
+- Scoring models
+- Dependency resolution
+- Calculation planning
 
-## Phase 2 - Python CLI Prototype
+**Status:** Completed
 
-### Goal
+## Phase 4 — Validation & Robustness
 
-Build the first actual risk calculation prototype.
+- Input validation
+- Error handling
+- Testing
+- Edge-case analysis
 
-### Architecture
+**Status:** In Progress
 
-```
-input.json
-      ⇓
-python prototype
-      ⇓
-output.json
-```
+## Long-Term Direction
 
-### Current Focus
+The long-term objective of CR-DSS is the impoementation of a dedicated C++ Risk Engine.
 
-- annuity calculations
-- basic economic indicators calculations
-- basic scoring logic
-- deterministic outputs
-- clean data structures
+Planned target:
+**Phase 12 — Initial C++ Risk Engine Implementation** 
 
-### Why Python?
+Estimated timeline: 
+**~1-1.5 years**
 
-Because right now speed of iteration matters more than performance.
-
-Python is intentionally treated as a prototype layer.
-
-### Status
-
-**Current Phase**
-
----
-
-## Phase 3 - Slim4 API Layer
-
-### Goal 
-
-Introduce a real backend safety and security layer between frontend and risk engine.
-
-### Focus
-
-- Rest API design
-- DTOs
-- validation 
-- orchestration
-- stateless communication
-- frontend/backend separation
-- security
-- future persistence/database integration
-
-### Status
-**Planned**
-
----
-
-## Phase 4 - C++ Risk Engine
-
-### Goal
-
-Replace the Python prototype with dedicated engine.
-
-
-### Why C++
-
-The C++ engine is not a "maybe later" idea.
-
-It is already part of the planned long-term architecture and mainly exists to explore:
-- system design
-- lower-level engineering
-- performance-oriented computation
-- long-term engine evolution
-
-### Status
-
-**Planned**
+For a detailed roadmap and all project Phases, see:
+`docs/ROADMAP.md`
 
 ---
 
@@ -237,24 +200,6 @@ Including:
 I treat documentation as part of the engineering process itself.
 
 ---
-# About Me
-
-I'm mainly interested in:
-
-- software architecture
-- runtime systems
-- backend/frontend integration
-- long-term engineering
-- understanding how systems evolve over time
-
-Before CR-DSS I spent years experimenting with:
-- Unity/C# game development
-- OpenGL and C++
-- custom tooling and runtime systems
-- neural network experiments
-- architecture sketches and technical documentation
-
-CR-DSS is the long-term continuation of that technical exploration.
 
 # Disclamer
 
