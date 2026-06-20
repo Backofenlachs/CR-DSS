@@ -164,7 +164,7 @@ verwendet.
 Gründe sind:
 
 1. Der Zinssatz $i$ ist der ökonomisch primäre Modellparameter.
-2. Die Darstellung vermeidet große Zwischenwerte wie $q^n$ und ist numerisch stabiler.
+2. Die Darstellung verwendet direkt den ökonomischen Modellparameter i und entspricht unmittelbar der Herleitung der Barwertgleichheit.
 3. Sensitivitäts- und Risikobetrachtungen erfolgen direkt in Bezug auf $i$.
 
 Die Wahl ist somit sowohl mathematisch als auch modellarchitektonisch begründet.
@@ -194,3 +194,50 @@ Die Annuitätenformel bildet die Grundlage für:
 Sie ist eine direkte Anwendung der Barwertgleichheit und der geometrischen Reihe.
 
 
+## Computer-optimierte Formel (Implementation)
+
+Die mathematische Herleitung verwendet die Barwertform:
+
+$
+A = K_0 \cdot \frac{i}{1 - (1+i)^{-n}}
+$
+
+Für die Implementierung wird die algebraisch äquivalente Form
+
+$
+A =
+K_0 \cdot
+\frac{i(1+i)^n}{(1+i)^n - 1}
+$
+
+verwendet. Dadurch kann der Term $(1+i)^n$ einmal berechnet und wiederverwendet werden:
+
+```python
+term = (1 + i) ** n
+monthly_annuity = K0 * ((i * term) / (term - 1))
+```
+
+### Benchmark (in c++)
+
+| Variante                    | Laufzeit |
+|-----------------------------|----------|
+| Unoptimiert (`pow` zweimal) |   251 ms |
+| Optimiert (`pow` einmal)    |   143 ms |
+| Negative Exponentenform     |   144 ms |
+
+### High-Precision-Gegenprüfung (in Python)
+
+| Variante                           | Abweichung zur Referenz |
+| ---------------------------------- | ----------------------: |
+| Optimierte positive Exponentenform |      $0 \cdot 10^{-97}$ |
+| Negative Exponentenform            |      $1 \cdot 10^{-97}$ |
+
+
+---
+
+Eine zusätzliche Prüfung in Pyhton `Decimal` (100 Stellen Präzision) zeigte, dass beide Formeln praktisch identische
+Ergebniss liefern. Die positive Exponentenform lag dabei minimal näher am Referenzwert.
+
+
+Für das Projekt wird daher die positive Exponentenform verwendet, da sie mathematisch äquivalent, leicht effizienter
+und für typische Kreditparameter numerisch ausreichend stabil ist.

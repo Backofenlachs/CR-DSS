@@ -24,9 +24,8 @@ class MonthlyAnnuityMetric(CalculationMetric):
         if i == 0:
             monthly_payment = K0 / n
         else:
-            numerator = i * (1 + i) ** n
-            denominator = (1 + i) ** n - 1
-            monthly_payment = K0 * (numerator / denominator)
+            term =  (1 + i) ** n
+            monthly_payment = K0 * ((i * term)  / (term - 1))
 
         
         
