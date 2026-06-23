@@ -241,3 +241,8 @@ Ergebniss liefern. Die positive Exponentenform lag dabei minimal näher am Refer
 
 Für das Projekt wird daher die positive Exponentenform verwendet, da sie mathematisch äquivalent, leicht effizienter
 und für typische Kreditparameter numerisch ausreichend stabil ist.
+
+---
+$$
+A:(K0​,i,n)↦K0​⋅1−(1+i)−ni​
+$$
