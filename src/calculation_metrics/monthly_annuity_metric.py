@@ -1,7 +1,8 @@
 from calculation_metrics.calculation_metric import CalculationMetric
 
 class MonthlyAnnuityMetric(CalculationMetric):
-    
+    NAME = "monthly_annuity"
+
     OUTPUT_KEYS = [
         "monthly_annuity",
         "total_repayment",
@@ -16,7 +17,7 @@ class MonthlyAnnuityMetric(CalculationMetric):
 
     REQUIRED_METRICS = []
 
-    def calculate(self, data):
+    def _calculate(self, data):
         K0 = data['loan_amount']
         i = data['annual_interest_rate'] / 12
         n = data['loan_term_months']

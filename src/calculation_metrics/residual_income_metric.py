@@ -2,9 +2,7 @@ from calculation_metrics.calculation_metric import CalculationMetric
 
 class ResidualIncomeAfterLoanMetric(CalculationMetric):
 
-    OUTPUT_KEYS = [
-        "residual_income_after_loan"
-    ]
+    NAME = "residual_income_after_loan"
 
     REQUIRED_INPUTS = [
         "monthly_net_income",
@@ -16,7 +14,11 @@ class ResidualIncomeAfterLoanMetric(CalculationMetric):
         "monthly_annuity"
     ]
 
-    def calculate(self, data):
+    OUTPUT_KEYS = [
+        "residual_income_after_loan"
+    ]
+
+    def _calculate(self, data):
 
         residual_income_after_loan = (
             data["monthly_net_income"]

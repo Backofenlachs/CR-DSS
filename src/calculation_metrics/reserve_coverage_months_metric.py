@@ -1,11 +1,8 @@
 from calculation_metrics.calculation_metric import CalculationMetric
 
 class ReserveCoverageMonthsMetric(CalculationMetric):
-
-    OUTPUT_KEYS = [
-        "reserve_coverage_months"
-    ]
-
+    NAME = "reserve_coverage_months"
+    
     REQUIRED_INPUTS = [
         "monthly_fixed_costs",
         "existing_monthly_debt_payments",
@@ -16,7 +13,12 @@ class ReserveCoverageMonthsMetric(CalculationMetric):
         "monthly_annuity"
     ]
 
-    def calculate(self, data):
+    OUTPUT_KEYS = [
+        "reserve_coverage_months"
+    ]
+
+
+    def _calculate(self, data):
         
         total_monthly_obligations = (
             data["monthly_fixed_costs"] +
