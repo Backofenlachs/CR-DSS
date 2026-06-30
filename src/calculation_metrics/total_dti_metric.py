@@ -18,7 +18,20 @@ class TotalDtiMetric(CalculationMetric):
     ]
 
     def _calculate(self, data):
-        total_monthly_debt_payments = data['existing_monthly_debt_payments'] + data['monthly_annuity']
+        if data["monthly_net_income"] <= 0:
+            raise ValueError("monthly_net_income must be greater than 0")
+    
+        if data["existing_monthly_debt_payments"] < 0:
+            raise ValueError("existing_monthly_debt_payments must not be negative")
+        
+        if data["monthly_annuity"] < 0:
+            raise ValueError("monthly_annuity must not be negative")
+        
+
+        total_monthly_debt_payments = (
+            data['existing_monthly_debt_payments'] 
+            + data['monthly_annuity']
+        )
 
         total_dti = total_monthly_debt_payments / data['monthly_net_income']
 
