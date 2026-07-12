@@ -2,13 +2,13 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class LevelPlan:
-    calculation_plan: list[list[str]]
+    calculation_plan: list[list[str]] # level n -> level 0
     required_inputs: list[str]
     processed_metrics: dict[str, int]
 
 @dataclass(frozen=True)
-class MetricDependencyPlan(LevelPlan):
-    scoring_required_inputs: list[str]
+class MetricDependencyPlan(LevelPlan): 
+    scoring_required_inputs: list[str] # level 0 -> level n
     scoring_required_metrics: list[str]
 
 class MetricDependencyResolver:
@@ -36,7 +36,7 @@ class MetricDependencyResolver:
             scoring_required_metrics= required_metrics
         )
 
-    def planLevels(self, required_metrics, metrics_registry) -> LevelPlan:
+    def planLevels(self, required_metrics :list[str], metrics_registry) -> LevelPlan:
         levels = [required_metrics]
         processed_metrics = {metric: 0 for metric in required_metrics}
         required_inputs = []

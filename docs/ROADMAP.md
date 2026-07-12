@@ -62,14 +62,19 @@ Actual time needed: 4,5 weeks
 ## Phase 4 — Validation & Robustness of the Scoring Prototype
 Status: **In Progress**
 
-Estimated time: 4–6 weeks -> just started
+Estimated time: 4–6 weeks 
+Actual time needed: 5 weeks (one point missing) 
 
-- [ ] Input validation
-- [ ] Missing input handling
-- [ ] Unit testing
-- [ ] Edge-case testing
-- [ ] Regression testing
-- [ ] Stable error responses
+- [x] Setup pytest infrastructure
+- [x] Standardize metric validation through `CalculationMetric`
+- [x] Introduce metric contract validation
+- [x] Imporve error handling across calculation metrics
+- [x] Add comprehensive unit tests for `MonthlyAnnuityMetric`
+- [x] Add comprehensive unit tests for `TotalDtiMetric`
+- [x] Add comprehensive unit tests for `ReserveCoverageMonthsMetric`
+- [x] Optimize and validate annuity calculation
+- [x] Add base tests for `CalculationMetric`
+- [ ] Complete unit tests for `ResidualIncomeAfterLoanMetric`
 
 ---
 

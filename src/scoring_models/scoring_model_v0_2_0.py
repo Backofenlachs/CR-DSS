@@ -1,16 +1,5 @@
 class ScoringModel2: 
 
-    REQUIRED_INPUTS = [
-        "employment_months",
-        "age",
-    ]
-
-    REQUIRED_METRICS = [
-        "total_dti",
-        "residual_income_after_loan",
-        "reserve_coverage_months",
-    ]
-
     REQUIRED_DATA = [
         "employment_months",
         "age",
