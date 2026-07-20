@@ -10,3 +10,7 @@ venv/
 
 # Runtime Output
 data/loan-result.json 
+
+# frontend TSC
+frontend/node_modules/
+frontend/dist/

@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es2022", // warum nicht es2025
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+
+        "lib": [
+            "ES2022",
+            "DOM",
+            "DOM.Iterable"
+        ],
+
+        "rootDir": "./src",
+        "outDir": "./dist",
+
+        "strict": true,
+        "noEmitOnError": true,
+        "verbatimModuleSyntax": true,
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts"
+    ]
+}
