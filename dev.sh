@@ -27,7 +27,10 @@ cd ~/workspace/production/CR-DSS
 
 ./frontend/node_modules/.bin/browser-sync start \
     --server . \
-    --files "frontend/dist/**/*.js" \
+    --files \
+        "frontend/dist/**/*.js" \
+        "frontend/**/*.html" \
+        "frontend/styles/**/*.css" \
     --startPath "/frontend/" \
     --port 8080 \
     --logLevel debug
