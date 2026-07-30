@@ -2,14 +2,14 @@
     "application_number": "...",
     "scoring_model": "v0.2.0",
 
-    "monthly_net_income": 3800,
-    "existing_monthly_debt_payments":  400,
-    "monthly_fixed_costs": 1400,
+    "monthly_net_income": 1000,
+    "existing_monthly_debt_payments":  0,
+    "monthly_fixed_costs": 500,
     "cash_reserve": 0,
-    "employment_months": 6,
-    "age": 24,
+    "employment_months":  6,
+    "age": 19,
  
-    "loan_amount": 10000,
+    "loan_amount": 1000,
     "annual_interest_rate": 0.05,
-    "loan_term_months": 64
+    "loan_term_months": 12
 }
