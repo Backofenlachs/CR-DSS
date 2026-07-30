@@ -1,0 +1,113 @@
+.applicant-request {
+    width: 100%;
+    min-width: 0;
+
+    padding: var(--space-5);
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+}
+
+/* Header */
+
+.applicant-request__header {
+    margin-bottom: var(--space-5);
+}
+
+.applicant-request__title {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.applicant-request__description {
+    margin: var(--space-1) 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+/* Form */
+
+.applicant-request__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* Sections */
+
+.applicant-request__section {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+}
+
+.applicant-request__section-title {
+    width: 100%;
+    margin: 0 0 var(--space-3);
+    padding: 0 0 var(--space-2);
+
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Field container */
+
+.applicant-request__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+}
+
+/* Prepared for the individual fields */
+
+.applicant-request__field {
+    min-width: 0;
+}
+
+.applicant-request__field label {
+    display: block;
+    margin-bottom: var(--space-2);
+
+    color: var(--color-text-muted);
+
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.applicant-request__field input,
+.applicant-request__field select {
+    width: 100%;
+}
+
+/* Actions */
+
+.applicant-request__actions {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: var(--space-1);
+    padding-top: var(--space-4);
+
+    border-top: 1px solid var(--color-border);
+}
+
+.applicant-request__submit {
+    min-width: 190px;
+}

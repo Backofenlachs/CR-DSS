@@ -17,9 +17,9 @@ const DEFAULT_CONFIG: CRDSSHeaderConfig = {
     subtitle: "Credit Risk Decision Support System",
 
     versions: {
-        riskEngine: "0.2.0",
-        server: "0.1.0",
-        ui: "0.1.0"
+        riskEngine: "unknown",
+        server: "unknown",
+        ui: "unknown"
     }
 };
 

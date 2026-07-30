@@ -1,41 +1,47 @@
 import {
     AppController,
     SlotNames,
+    node,
     slot
 } from "../../libs/ui-engine-v0_2_0/index.js";
 import type { LayoutConfig } from "../../libs/ui-engine-v0_2_0/index.js";
 
-import  { CRDSSHeaderTool } from "./tools/CRDSSHeaderTool.js"
-import type { CRDSSHeaderConfig } from "./tools/CRDSSHeaderTool.js";
+import { HEADER_CONFIG } from "./config/applicationConfig.js";
 
+import  { CRDSSHeaderTool, type CRDSSHeaderConfig } from "./tools/CRDSSHeaderTool.js"
+import { ApplicantRequestTool } from "./tools/ApplicantRequestTool.js";
 
-const HEADER_CONFIG: CRDSSHeaderConfig = {
-    title: "CR-DSS",
-    subtitle: "Credit Risk Decision Support System",
-
-    versions: {
-        riskEngine: "0.2.0",
-        server: "0.1.0",
-        ui: "0.1.0"
-    }
-};
+const CRDSS_SLOT_NAMES = {
+    APPLICANT_REQUEST: "applicant-request",
+    RISK_ASSESMENT: "risk-assessment"
+} as const;
 
 const LAYOUT_CONFIG = {
-    layout: slot(
-        "div",
-        SlotNames.HEADER,
-    ),
-
+    layout: node("div", ["crdss-shell"], [
+        slot("div", SlotNames.HEADER,),
+        node("main", ["crdss-workspace"],[
+            slot("div", CRDSS_SLOT_NAMES.APPLICANT_REQUEST, ["crdss-workspace__request"]),
+            slot("div", CRDSS_SLOT_NAMES.RISK_ASSESMENT, ["crdss-workspace__result"])
+        ])
+    ]),
     mounts: [
-        {
+        { // HEADER 
             slotName: SlotNames.HEADER,
             toolName: "cr-dss-header",
             toolClass: CRDSSHeaderTool,
             config: HEADER_CONFIG,
             activeOnLoad: true
+        },
+        { // APPLICANT REQUEST
+            slotName: CRDSS_SLOT_NAMES.APPLICANT_REQUEST,
+            toolName: "applicant-request",
+            toolClass: ApplicantRequestTool,
+            config: null,
+            activeOnLoad: true
         }
     ]
 } satisfies LayoutConfig;
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const $app = $("#app");

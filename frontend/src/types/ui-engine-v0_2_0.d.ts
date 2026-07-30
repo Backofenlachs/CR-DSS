@@ -11,7 +11,28 @@ interface UiEngineRoot {
 declare function $(selector: string): UiEngineRoot;
 
 declare module "*ui-engine-v0_2_0/index.js" {
-    export type LayoutNode = unknown;
+    export type LayoutNode = {
+        tag: string;
+        classes: string[];
+        children: LayoutNode[];
+
+        slot?: string;
+        style: unknown[] | null;
+    };
+    
+    export function slot(
+        tag: string,
+        slotName: string,
+        classes?: string[]
+    ): LayoutNode;
+
+    export function node(
+        tag?: string,
+        classes?: string[],
+        children?: LayoutNode[],
+        style?: unknown[] | null
+    ): LayoutNode;
+
 
     export abstract class BaseTool {
         constructor();
@@ -50,12 +71,6 @@ declare module "*ui-engine-v0_2_0/index.js" {
     export const SlotNames: Readonly<Record<string, string>> & {
         readonly HEADER: string;
     };
-
-    export function slot(
-        elementName: string,
-        slotName: string,
-        classNames?: readonly string[]
-    ): LayoutNode;
 
     export class HeaderTool extends BaseTool  {}
 

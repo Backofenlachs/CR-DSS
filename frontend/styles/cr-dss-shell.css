@@ -1,0 +1,38 @@
+.crdss-shell {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.crdss-shell__header {
+    width: 100%;
+}
+
+.crdss-workspace {
+    width: 100%;
+    max-width: var(--content-max-width, 1600px);
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(0, 0.95fr);
+
+    gap: var(--space-5, 24px);
+
+    margin: 0 auto;
+    padding:
+        var(--space-5, 24px)
+        var(--space-6, 32px);
+}
+
+.crdss-workspace__request,
+.crdss-workspace__result {
+    min-width: 0;
+}
+
+.crdss-workspace__request {
+    display: flex;
+}
+
+.crdss-workspace__result {
+    display: flex;
+}
