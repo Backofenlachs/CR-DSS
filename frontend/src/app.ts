@@ -10,6 +10,7 @@ import { HEADER_CONFIG } from "./config/applicationConfig.js";
 
 import  { CRDSSHeaderTool, type CRDSSHeaderConfig } from "./tools/CRDSSHeaderTool.js"
 import { ApplicantRequestTool } from "./tools/ApplicantRequestTool.js";
+import { RiskResultTool } from "./tools/RiskResultTool.js";
 
 const CRDSS_SLOT_NAMES = {
     APPLICANT_REQUEST: "applicant-request",
@@ -38,7 +39,14 @@ const LAYOUT_CONFIG = {
             toolClass: ApplicantRequestTool,
             config: null,
             activeOnLoad: true
-        }
+        }, 
+        { // RISK RESULT
+            slotName: CRDSS_SLOT_NAMES.RISK_ASSESMENT,
+            toolName: "risk-result",
+            toolClass: RiskResultTool,
+            config: null,
+            activeOnLoad: true
+    }
     ]
 } satisfies LayoutConfig;
 

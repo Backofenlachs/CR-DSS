@@ -23,8 +23,6 @@ WATCH_PID=$!
 # because frontend/ imports files from libs/.
 cd "$ROOT_DIR"
 
-cd ~/workspace/production/CR-DSS
-
 ./frontend/node_modules/.bin/browser-sync start \
     --server . \
     --files \
