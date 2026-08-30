@@ -2,6 +2,8 @@
 
 [Penpot Design](https://design.penpot.app/#/view?file-id=7cd71457-8d32-8044-8008-5507ba9522f4&page-id=7cd71457-8d32-8044-8008-5507ba9522f5&section=interactions&frame-id=569de593-e945-8045-8008-5507bf193eaf&index=0&share-id=7cd71457-8d32-8044-8008-5515db7761a3)
 
+PDF: `/docs/ui/CR-DSS_UI_v0_1_0.pdf` 
+
 This document defines the technical, buisness, and layout requirements for the first CR-DSS user interface.
 
 ## Purpose

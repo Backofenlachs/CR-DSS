@@ -6,7 +6,7 @@ import {
 } from "../../libs/ui-engine-v0_2_0/index.js";
 import type { LayoutConfig } from "../../libs/ui-engine-v0_2_0/index.js";
 
-import { HEADER_CONFIG } from "./config/applicationConfig.js";
+import { HEADER_CONFIG } from "./configs/applicationConfig.js";
 
 import  { CRDSSHeaderTool, type CRDSSHeaderConfig } from "./tools/CRDSSHeaderTool.js"
 import { ApplicantRequestTool } from "./tools/ApplicantRequestTool.js";
