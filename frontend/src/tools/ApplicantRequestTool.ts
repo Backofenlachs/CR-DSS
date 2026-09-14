@@ -423,11 +423,6 @@ export class ApplicantRequestTool extends BaseTool {
             throw new Error("[ApplicantRequestTool] Applicant request form not found")
         }
 
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            console.log("SUBMIT intercepted");
-        });
-
         this.controller.bind(form);
     }
 

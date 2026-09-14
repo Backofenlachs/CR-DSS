@@ -22,28 +22,21 @@ export interface RiskAssessmentResult {
     result: string
 }
 
-const RISK_ASSESSMENT_ENDPOINT = "/api/risk-assessment"
+const RISK_ASSESSMENT_ENDPOINT = "http://localhost:8080/api/risk-assessment"
 
 
 export const RiskAssessmentService = {
     async evaluate(applicantData: ApplicantRequestData): Promise<ApiResponse<RiskAssessmentResult>> {
-        
-        const response = await fetch( RISK_ASSESSMENT_ENDPOINT, {
+        console.count("RiskAssessmentService.evaluate -> fetch");
+        const response = await fetch(RISK_ASSESSMENT_ENDPOINT, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(applicantData)
+            body: JSON.stringify({ 
+                data: applicantData 
+            })
         });
-
-        return {
-            meta: {
-                success: true,
-                timestamp: "dummy_time"
-            },
-            data: dummyRiskAssessmentResult
-        } satisfies ApiResponse<RiskAssessmentResult>
-        
 
         if (!response.ok) {
             throw new Error(`[RiskAssessmentService.evaluate] Request failed: HTTP ${response.status}`)
