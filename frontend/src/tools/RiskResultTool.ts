@@ -1,6 +1,22 @@
 import { BaseTool } from "../../../libs/ui-engine-v0_2_0/index.js";
+import type { RiskAssessmentResult } from "../services/RiskAssessmentService.js";
+
+import { 
+    RiskAssessmentStore,
+    RESULT_EVENT_KEY
+} from "../stores/RiskAssessmentStore.js"
 
 export class RiskResultTool extends BaseTool {
+
+    private $root: UiEngineRoot | null = null;
+
+    private readonly handleResultUpdate = (event: Event): void => {
+        const result = (event as CustomEvent<RiskAssessmentResult>).detail;
+
+        if (!this.$root) return;
+
+        this.$root.find(".risk-assessment__decision-value").text(result.result);
+    }
 
     override render($root: UiEngineRoot): void {
         super.render($root);
@@ -38,7 +54,7 @@ export class RiskResultTool extends BaseTool {
                         </h2>
 
                         <strong class="risk-assessment__decision-value">
-                            APPROVED
+                            ---
                         </strong>
                     </div>
 
@@ -48,13 +64,13 @@ export class RiskResultTool extends BaseTool {
                         </span>
 
                         <strong class="risk-assessment__score-value">
-                            10
+                            ---
                         </strong>
                     </div>
                 </section>
 
 
-                <!-- Calculated metrics -->
+                <!-- Calculated metrics 
                 <section
                     class="risk-assessment__metrics"
                     aria-label="Calculated risk metrics"
@@ -98,10 +114,10 @@ export class RiskResultTool extends BaseTool {
                             360.51 EUR
                         </strong>
                     </article>
-                </section>
+                </section> -->
 
 
-                <!-- Summary -->
+                <!-- Summary 
                 <section
                     class="risk-assessment__summary"
                     aria-labelledby="risk-summary-title"
@@ -118,10 +134,14 @@ export class RiskResultTool extends BaseTool {
                         selected scoring model. Relevant calculated metrics
                         remain within the configured assessment thresholds.
                     </p>
-                </section>
+                </section>-->
             </section>
         `;
-        
+
         $root.html(html);
+
+        this.$root = $root;
+        
+        RiskAssessmentStore.addEventListener(RESULT_EVENT_KEY, this.handleResultUpdate)
     }
 }

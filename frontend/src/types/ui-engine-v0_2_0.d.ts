@@ -6,6 +6,10 @@ interface UiEngineRoot {
     
     html(contend: string | UiEngineRoot): UiEngineRoot;
     empty(): UiEngineRoot;
+
+    find(selector: string): UiEngineRoot;
+
+    text(content: string): UiEngineRoot;
 }
 
 declare function $(selector: string): UiEngineRoot;

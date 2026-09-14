@@ -36,6 +36,15 @@ export const RiskAssessmentService = {
             body: JSON.stringify(applicantData)
         });
 
+        return {
+            meta: {
+                success: true,
+                timestamp: "dummy_time"
+            },
+            data: dummyRiskAssessmentResult
+        } satisfies ApiResponse<RiskAssessmentResult>
+        
+
         if (!response.ok) {
             throw new Error(`[RiskAssessmentService.evaluate] Request failed: HTTP ${response.status}`)
         }
@@ -43,15 +52,7 @@ export const RiskAssessmentService = {
 
         const data = (await response.json()) as ApiResponse<RiskAssessmentResult>
 
-        const apiDummyRiskAssessmentResult  = {
-            meta: {
-                success: true,
-                timestamp: "dummy_time"
-            },
-            data: dummyRiskAssessmentResult
-        } satisfies ApiResponse<RiskAssessmentResult>
-
-        return apiDummyRiskAssessmentResult;
+        return data;
 
     }
 
@@ -80,5 +81,5 @@ export const dummyApplicantData: ApplicantRequestData = {
 
 const dummyRiskAssessmentResult: RiskAssessmentResult = {
     applicant_number: "APP-0001",
-    result: "approved"
+    result: "APPROVED"
 };
