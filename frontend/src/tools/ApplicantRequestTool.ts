@@ -1,6 +1,10 @@
 import { BaseTool } from "../../../libs/ui-engine-v0_2_0/index.js";
 
+import { ApplicantRequestController } from "./ApplicantRequestController.js";
+
 export class ApplicantRequestTool extends BaseTool {
+
+    private readonly controller = new ApplicantRequestController();
 
     override render($root: UiEngineRoot): void {
         super.render($root);
@@ -19,8 +23,8 @@ export class ApplicantRequestTool extends BaseTool {
                     </h1>
 
                     <p class="applicant-request__description">
-                        Complete the required data before evaluation.
-                    </p>
+                        Complete the ><!--required data before evaluation.
+                    </p-->
                 </header>
 
                 <form
@@ -70,8 +74,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         id="scoring-model"
                                         name="scoring_model"
                                         aria-describedby="scoring-model-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
                                         <option value="0.1.0">
                                             Scoring Model 0.1.0
                                         </option>
@@ -114,8 +118,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="1"
                                         placeholder="35"
                                         aria-describedby="age-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         years
@@ -145,8 +149,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="1"
                                         placeholder="48"
                                         aria-describedby="employment-months-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         months
@@ -185,8 +189,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="0.01"
                                         placeholder="3800.00"
                                         aria-describedby="monthly-net-income-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         EUR
@@ -216,8 +220,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="0.01"
                                         placeholder="1350.00"
                                         aria-describedby="monthly-fixed-costs-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         EUR
@@ -247,8 +251,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="0.01"
                                         placeholder="180.00"
                                         aria-describedby="existing-debt-payments-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         EUR
@@ -278,8 +282,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="0.01"
                                         placeholder="18000.00"
                                         aria-describedby="cash-reserve-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         EUR
@@ -318,8 +322,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="0.01"
                                         placeholder="12000.00"
                                         aria-describedby="loan-amount-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         EUR
@@ -350,8 +354,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="0.01"
                                         placeholder="5.20"
                                         aria-describedby="annual-interest-rate-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         %
@@ -381,8 +385,8 @@ export class ApplicantRequestTool extends BaseTool {
                                         step="1"
                                         placeholder="36"
                                         aria-describedby="loan-term-months-hint"
-                                        required
-                                    >
+                                        ><!--required
+                                    -->
 
                                     <span class="applicant-request__input-unit">
                                         months
@@ -412,5 +416,23 @@ export class ApplicantRequestTool extends BaseTool {
         `;
 
         $root.html(html);
+
+        const form = document.getElementById("applicant-request-form");
+
+        if (!(form instanceof HTMLFormElement)) {
+            throw new Error("[ApplicantRequestTool] Applicant request form not found")
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            console.log("SUBMIT intercepted");
+        });
+
+        this.controller.bind(form);
+    }
+
+    override destroy(): void {
+        this.controller.destroy();
+        super.destroy()
     }
 }

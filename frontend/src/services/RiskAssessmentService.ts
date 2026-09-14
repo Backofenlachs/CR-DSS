@@ -43,16 +43,26 @@ export const RiskAssessmentService = {
 
         const data = (await response.json()) as ApiResponse<RiskAssessmentResult>
 
-        return data;
+        const apiDummyRiskAssessmentResult  = {
+            meta: {
+                success: true,
+                timestamp: "dummy_time"
+            },
+            data: dummyRiskAssessmentResult
+        } satisfies ApiResponse<RiskAssessmentResult>
+
+        return apiDummyRiskAssessmentResult;
 
     }
 
 }
 
 
+
+
 // ================== Dummy Data =====================
 
-const dummyApplicantData: ApplicantRequestData = {
+export const dummyApplicantData: ApplicantRequestData = {
     scoring_model: "v0.2.0",
 
     age: 34,
