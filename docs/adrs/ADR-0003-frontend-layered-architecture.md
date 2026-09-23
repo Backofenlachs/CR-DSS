@@ -1,8 +1,8 @@
 # ADR-0003: Frontend Layered Architecture
 
-**IN PROGRESS**
+**IN PROGRESS / Implementation started**
 
-Date: 07.06.2026
+Date: 30.08.2026
 
 Author: Perseus Palma Jacobs
 

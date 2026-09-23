@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
+
 $app->get('/', function (Request $request, Response $response): Response {
     $response->getBody()->write('Hello World');
 
@@ -18,8 +19,34 @@ $app->post('/api/risk-assessment', function (Request $request, Response $respons
     $body = json_decode((string) $request->getBody(), true);
 
     $applicantData = $body['data'];
+    // error_log(print_r($applicantData, true));
 
-    error_log(print_r($applicantData, true));
+    $applicantNumber = 'APP-0001';
+
+    // ========== Loan Request ==========
+    $finalApplicantData = enrichApplicantData($applicantData, $applicantNumber);
+
+
+    $jsonData = json_encode($finalApplicantData, JSON_PRETTY_PRINT);    // data in jsonData formating
+    
+    $dataDir = '../../data/';
+    $requestFileName = $applicantNumber.'_loan-request.json';
+
+    try {
+        file_put_contents($dataDir.$requestFileName, $jsonData); 
+    } catch(Throwable $th) {
+        throw new Exception('Writing data Failed');
+    }
+
+
+    // ========== Loan Result ==========
+    
+
+
+    // check when ../../data/APP-0001-loan-result.json is final
+
+    // read data from loan-result and return to frontend
+
 
     $data = [
         'meta' => [
@@ -27,7 +54,7 @@ $app->post('/api/risk-assessment', function (Request $request, Response $respons
             'timestamp' => date(DATE_ATOM)
         ],
         'data' => [
-            'applicant_number' => 'APP-0001',
+            'applicant_number' => $applicantNumber,
             'result' => 'APPROVED'
         ]
     ];
@@ -39,11 +66,7 @@ $app->post('/api/risk-assessment', function (Request $request, Response $respons
         ->withHeader('Access-Control-Allow-Origin', '*');
 });
 
-
-$app->options('/{routes:.*}', function (
-    Request $request,
-    Response $response
-): Response {
+$app->options('/{routes:.*}', function (Request $request, Response $response): Response {
     return $response
         ->withHeader('Access-Control-Allow-Origin', '*')
         ->withHeader('Access-Control-Allow-Headers', 'Content-Type')
@@ -51,3 +74,12 @@ $app->options('/{routes:.*}', function (
 });
 
 $app->run();
+
+
+// TEMP: enrichment + data validation
+function enrichApplicantData(array $data, string $applicantNumber): array {
+
+    $data['application_number'] = $applicantNumber;
+    
+    return $data;
+}   

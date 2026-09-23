@@ -76,10 +76,10 @@ export class ApplicantRequestTool extends BaseTool {
                                         aria-describedby="scoring-model-hint"
                                         ><!--required
                                     -->
-                                        <option value="0.1.0">
+                                        <option value="v0.1.0">
                                             Scoring Model 0.1.0
                                         </option>
-                                        <option value="0.2.0" selected>
+                                        <option value=" v0.2.0" selected>
                                             Scoring Model 0.2.0
                                         </option>
                                     </select>

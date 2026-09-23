@@ -42,33 +42,20 @@ export class ApplicantRequestController {
         const formData = new FormData(this.form);
 
         const applicantData: ApplicantRequestData = {
-            scoring_model:
-                String(formData.get("scoring_model")),
+            scoring_model: String(formData.get("scoring_model")),
 
-            age: Number(formData.get("age")),
-            employment_months: Number(formData.get("employment_months")),
             monthly_net_income: Number(formData.get("monthly_net_income")),
+            existing_monthly_debt_payments: Number(formData.get("existing_monthly_debt_payments")),
             monthly_fixed_costs: Number(formData.get("monthly_fixed_costs")),
-            existing_monthly_debt_payments:
-                Number(
-                    formData.get(
-                        "existing_monthly_debt_payments"
-                    )
-                ),
+            cash_reserve: Number(formData.get("cash_reserve")),
+            employment_months: Number(formData.get("employment_months")),
+            age: Number(formData.get("age")),
 
-            cash_reserve:
-                Number(formData.get("cash_reserve")),
-
-            loan_amount:
-                Number(formData.get("loan_amount")),
-
-            annual_interest_rate:
-                Number(formData.get("annual_interest_rate")),
-
-            loan_term_months:
-                Number(formData.get("loan_term_months"))
+            loan_amount: Number(formData.get("loan_amount")),
+            annual_interest_rate: Number(formData.get("annual_interest_rate")),
+            loan_term_months: Number(formData.get("loan_term_months"))
         };
         
-        await RiskAssessmentStore.evaluate( applicantData );
+        await RiskAssessmentStore.evaluate(applicantData);
     };
 }

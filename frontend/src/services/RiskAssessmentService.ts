@@ -4,13 +4,12 @@ import type ApiResponse from '../types/Api.js';
 export interface ApplicantRequestData {
     scoring_model: string;
 
-    age: number;
-    employment_months: number;
-
     monthly_net_income: number;
-    monthly_fixed_costs: number;
     existing_monthly_debt_payments: number;
+    monthly_fixed_costs: number;
     cash_reserve: number;
+    employment_months: number;
+    age: number;
 
     loan_amount: number;
     annual_interest_rate: number;
