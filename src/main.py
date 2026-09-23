@@ -1,3 +1,5 @@
+import sys
+from pathlib import Path
 
 from services.calculation_service import CalculationService
 from services.io_handler import IOHandler 
@@ -12,9 +14,14 @@ if __name__ == "__main__":
     score = ScoringService()
     dm = MetricDependencyResolver()
 
+    APLID = sys.argv[1] # ApplicantId
+
+    data_dir = Path(__file__).resolve().parent.parent / 'data'
+    loan_request_file = APLID  + '_loan-request.json'
+    loan_result_file = APLID + '_loan-result.json'
 
     # read Input
-    APPLICANT_DATA = io.json_IO_read('data/loan-request.json');  
+    APPLICANT_DATA = io.json_IO_read(data_dir / loan_request_file);  
 
     # validate and select Scoring Model
     score.select(APPLICANT_DATA["scoring_model"])
@@ -48,5 +55,5 @@ if __name__ == "__main__":
     }
 
     # Write Output
-    io.json_IO_write('data/loan-result.json', applicant_result)
+    io.json_IO_write(data_dir / loan_result_file, applicant_result)
     print(f"Risk Assessment Decision: {SCORE_RESULT}")    

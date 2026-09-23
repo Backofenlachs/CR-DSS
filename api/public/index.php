@@ -21,16 +21,15 @@ $app->post('/api/risk-assessment', function (Request $request, Response $respons
     $applicantData = $body['data'];
     // error_log(print_r($applicantData, true));
 
-    $applicantNumber = 'APP-0001';
+    $applicantId = createAPLID();
+    $dataDir = '../../data/';
 
     // ========== Loan Request ==========
-    $finalApplicantData = enrichApplicantData($applicantData, $applicantNumber);
+    $requestFileName = $applicantId.'_loan-request.json';
 
-
+    $finalApplicantData = enrichApplicantData($applicantData, $applicantId);
     $jsonData = json_encode($finalApplicantData, JSON_PRETTY_PRINT);    // data in jsonData formating
     
-    $dataDir = '../../data/';
-    $requestFileName = $applicantNumber.'_loan-request.json';
 
     try {
         file_put_contents($dataDir.$requestFileName, $jsonData); 
@@ -38,14 +37,16 @@ $app->post('/api/risk-assessment', function (Request $request, Response $respons
         throw new Exception('Writing data Failed');
     }
 
-
+    exec('python3 ../../src/main.py '.escapeshellarg($applicantId), $output_array, $exicCode);
     // ========== Loan Result ==========
+    $resultFileName = $applicantId.'_loan-result.json';
     
-
-
-    // check when ../../data/APP-0001-loan-result.json is final
-
-    // read data from loan-result and return to frontend
+    try {
+        $jsonResultData = file_get_contents($dataDir.$resultFileName);
+    } catch(Throwable $th) {
+        throw new Exception('Reading result Data Failed');
+    }
+    $resultContent = json_decode($jsonResultData);
 
 
     $data = [
@@ -53,10 +54,7 @@ $app->post('/api/risk-assessment', function (Request $request, Response $respons
             'success' => true,
             'timestamp' => date(DATE_ATOM)
         ],
-        'data' => [
-            'applicant_number' => $applicantNumber,
-            'result' => 'APPROVED'
-        ]
+        'data' => $resultContent
     ];
 
     $response->getBody()->write(json_encode($data));
@@ -77,9 +75,26 @@ $app->run();
 
 
 // TEMP: enrichment + data validation
-function enrichApplicantData(array $data, string $applicantNumber): array {
+function enrichApplicantData(array $data, string $applicantId): array {
 
-    $data['application_number'] = $applicantNumber;
+    $data['application_number'] = $applicantId;
     
     return $data;
 }   
+
+
+// TEMP: UUIDv4 for applicant id to await raceConditions
+function createAPLID() {
+    $uuidv4 = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        random_int(0, 0xffff),
+        random_int(0, 0xffff),
+        random_int(0, 0xffff),
+        random_int(0, 0x0fff) | 0x4000,
+        random_int(0, 0x3fff) | 0x8000,
+        random_int(0, 0xffff),
+        random_int(0, 0xffff),
+        random_int(0, 0xffff)
+    );
+
+    return 'APP-'.$uuidv4;
+}
