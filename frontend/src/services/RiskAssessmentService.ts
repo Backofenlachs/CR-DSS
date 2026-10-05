@@ -21,7 +21,7 @@ export interface RiskAssessmentResult {
     result: string
 }
 
-const RISK_ASSESSMENT_ENDPOINT = "http://localhost:8080/api/risk-assessment"
+const RISK_ASSESSMENT_ENDPOINT = "http://localhost:8000/api/risk-assessment"
 
 
 export const RiskAssessmentService = {
