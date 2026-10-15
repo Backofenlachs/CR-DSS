@@ -60,7 +60,7 @@ Actual time needed: 4,5 weeks
 ---
 
 ## Phase 4 — Validation & Robustness of the Scoring Prototype
-Status: **In Progress**
+Status: **Completed**
 
 Estimated time: 4–6 weeks 
 Actual time needed: 5 weeks (one point missing) 
@@ -74,31 +74,43 @@ Actual time needed: 5 weeks (one point missing)
 - [x] Add comprehensive unit tests for `ReserveCoverageMonthsMetric`
 - [x] Optimize and validate annuity calculation
 - [x] Add base tests for `CalculationMetric`
-- [ ] Complete unit tests for `ResidualIncomeAfterLoanMetric`
+- [x] Complete unit tests for `ResidualIncomeAfterLoanMetric`
 
 ---
 
-## Phase 5 — GUI Integration using the UI-Engine
-Status: **Planned**
+## Phase 5 — Frontend Architecture & UI-Engine Integration
 
-Estimated time: 1 week
+Status: **Completed**
 
-- [ ] Extend existing MVC prototype
-- [ ] Add scoring request input fields
-- [ ] Connect frontend with backend requests
-- [ ] Render scoring results in the UI
+Estimated time: 1 week  
+Actual time needed: 3 weeks
+
+- [x] Integrate the custom UI-Engine into the CR-DSS frontend
+- [x] Set up TypeScript and define frontend interfaces
+- [x] Establish a layered frontend architecture (View → Store → Service)
+- [x] introduce state management and event-driven UI updates
+- [x] Develop the `ApplicantRequestTool` for scoring input
+- [x] Implement the frontend-to-backend request pipeline
+- [x] Develop the `RiskResultTool` for displaying scoring results
+- [x] Document frontend architecture decisions in ADR-0003
 
 ---
+## Phase 6 — Slim 4 API Layer & End-to-End Scoring Integration
 
-## Phase 6 — Introduce Slim4 as a Lightweight Server Layer
-Status: **Planned**
+Status: **Completed**
 
-Estimated time: 3 weeks
+Estimated time: 3 weeks  
+Actual time needed: 2 weeks
 
-- [ ] Introduce API routing
-- [ ] Connect GUI with scoring prototype
-- [ ] Add request/response handling
-- [ ] Separate frontend and domain execution flow
+- [x] Set up Slim 4 as a lightweight PHP API layer
+- [x] Implement the `POST /api/risk-assessment` endpoint
+- [x] Add JSON request and response handling
+- [x] Implement file-based communication between PHP and the Python scoring engine
+- [x] Integrate the Python scoring prototype into the API execution flow
+- [x] Connect the frontend service layer with the Slim 4 backend
+- [x] Complete the end-to-end scoring pipeline (Frontend → Slim 4 → Python Engine → API Response → Store → UI)
+- [x] Establish the first working end-to-end risk assessment prototype
+
 
 ---
 

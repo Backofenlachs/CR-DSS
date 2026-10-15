@@ -69,7 +69,7 @@ Standalone frontend architecture prototype
   
 repo: `https://github.com/Backofenlachs/UI-Engine.git`
 
-## Current State — Phase 5
+## Current State — Phase 6
 first fully working pipeline 
 
 ```
