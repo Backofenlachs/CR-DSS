@@ -38,6 +38,7 @@ if __name__ == "__main__":
     # calculations
     CALCULATION_RESULT = calc.start(DEPENDENCY_PLAN.scoring_required_metrics, APPLICANT_DATA, DEPENDENCY_PLAN.calculation_plan)
 
+    print('required Inputs: ', DEPENDENCY_PLAN.required_inputs)
 
     # merge the calculationresults and the needed inputs in scoringData
     ScoringData = CALCULATION_RESULT.copy()

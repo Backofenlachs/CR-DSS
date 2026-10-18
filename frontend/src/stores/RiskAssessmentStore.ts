@@ -1,6 +1,7 @@
 import {
     RiskAssessmentService,
-    type ApplicantRequestData,
+    type ApplicantRequestDataV010,
+    type ApplicantRequestDataV020,
     type RiskAssessmentResult
 } from "../services/RiskAssessmentService.js";
 
@@ -19,7 +20,7 @@ function setResult(newResult: RiskAssessmentResult): void {
 export const RiskAssessmentStore = {
 
 
-    async evaluate(applicantData: ApplicantRequestData): Promise<void> {
+    async evaluate(applicantData: ApplicantRequestDataV010 | ApplicantRequestDataV020): Promise<void> {
 
         const response = await RiskAssessmentService.evaluate(applicantData);
 

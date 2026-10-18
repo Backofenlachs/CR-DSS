@@ -1,5 +1,3 @@
-import type { ScoringModel } from "./ApplicantRequestTool.js";
-
 import { ApplicantRequestFormV010 } from "./ApplicantRequestFormV010.js";
 import { ApplicantRequestFormV020 } from "./ApplicantRequestFormV020.js";
 
