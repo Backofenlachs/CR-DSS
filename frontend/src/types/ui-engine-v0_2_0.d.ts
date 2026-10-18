@@ -10,6 +10,11 @@ interface UiEngineRoot {
     find(selector: string): UiEngineRoot;
 
     text(content: string): UiEngineRoot;
+
+    on(event: string, handler: (event: Event) => void): UiEngineRoot;
+
+    prop(name: string): unknown;
+    prop(name: string, value: unknown): UiEngineRoot;
 }
 
 declare function $(selector: string): UiEngineRoot;
