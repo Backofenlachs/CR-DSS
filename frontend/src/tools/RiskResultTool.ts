@@ -1,10 +1,13 @@
 import { BaseTool } from "../../../libs/ui-engine-v0_2_0/index.js";
-import type { RiskAssessmentResult } from "../services/RiskAssessmentService.js";
-
 import { 
     RiskAssessmentStore,
-    RESULT_EVENT_KEY
+    RESULT_EVENT_KEY,
+    STATE_EVENT_KEY
 } from "../stores/RiskAssessmentStore.js"
+
+
+import type { RiskAssessmentResult } from "../services/RiskAssessmentService.js";
+import type { StoreStates } from "../stores/RiskAssessmentStore.js";
 
 export class RiskResultTool extends BaseTool {
 
@@ -16,6 +19,30 @@ export class RiskResultTool extends BaseTool {
         if (!this.$root) return;
 
         this.$root.find(".risk-assessment__decision-value").text(result.result);
+    }
+
+    private readonly handleStateChange = (event: Event): void => {
+        const state = (event as CustomEvent<StoreStates>).detail;
+
+        if (!this.$root) return;
+
+        const $decision = this.$root.find(".risk-assessment__decision-value");
+
+        switch (state) {
+            case 'loading':
+                $decision.html( /*html*/ `
+                    <span class="calculating">
+                        Calculating<span class="calculating__dots"></span>
+                    </span>
+                `);
+                break;
+
+            case 'empty':
+                $decision.text('---');
+                break;
+            case 'idle':
+                break;
+        }
     }
 
     override render($root: UiEngineRoot): void {
@@ -142,6 +169,6 @@ export class RiskResultTool extends BaseTool {
 
         this.$root = $root;
         
-        RiskAssessmentStore.addEventListener(RESULT_EVENT_KEY, this.handleResultUpdate)
-    }
+        RiskAssessmentStore.addEventListener(RESULT_EVENT_KEY, this.handleResultUpdate);
+        RiskAssessmentStore.addEventListener(STATE_EVENT_KEY, this.handleStateChange);    }
 }
