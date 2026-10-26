@@ -18,13 +18,30 @@ export class RiskResultTool extends BaseTool {
 
         if (!this.$root) return;
 
-        this.$root.find(".risk-assessment__decision-value").text(result.result);
+        const $decision = this.$root.find(".risk-assessment__decision-value");
+
+        $decision.removeClass("is-accepted is-declined");
+        $decision.text(result.result);
+
+        switch (result.result) {
+            case 'APPROVED':
+                $decision.addClass('is-accepted');
+                break;
+
+
+
+            case 'DECLINE':
+                $decision.addClass('is-declined');
+                break;
+        }
     }
 
     private readonly handleStateChange = (event: Event): void => {
         const state = (event as CustomEvent<StoreStates>).detail;
 
         if (!this.$root) return;
+
+        console.log("Hello World")
 
         const $decision = this.$root.find(".risk-assessment__decision-value");
 

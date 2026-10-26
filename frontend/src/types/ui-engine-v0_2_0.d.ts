@@ -15,6 +15,9 @@ interface UiEngineRoot {
 
     prop(name: string): unknown;
     prop(name: string, value: unknown): UiEngineRoot;
+
+    addClass(classes: string): UiEngineRoot;
+    removeClass(classes: string): UiEngineRoot;
 }
 
 declare function $(selector: string): UiEngineRoot;

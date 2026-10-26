@@ -25,6 +25,10 @@
     --color-warning: #a16207;
     --color-danger: #b42318;
 
+    --color-decision-accepted: var(--color-success);
+    --color-decision-declined: var(--color-danger);
+    --color-decision-rewiev: var(--color-success);
+
     /* Layout */
     --header-height: 72px;
     --content-max-width: 1600px;
@@ -42,7 +46,7 @@
     --space-6: 32px;
 }
 
-/* Predictable element sizing */
+
 *,
 *::before,
 *::after {
@@ -74,7 +78,7 @@ body {
     min-height: 100vh;
 }
 
-/* Typography */
+
 
 h1,
 h2,
