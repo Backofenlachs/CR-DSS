@@ -24,8 +24,8 @@ export class ApplicantRequestFormV010 {
                                 step="0.01"
                                 placeholder="3800.00"
                                 aria-describedby="monthly-net-income-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -55,8 +55,8 @@ export class ApplicantRequestFormV010 {
                                 step="0.01"
                                 placeholder="1350.00"
                                 aria-describedby="monthly-fixed-costs-hint"
-                                ><!--required
-                            -->
+                                required 
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -86,8 +86,8 @@ export class ApplicantRequestFormV010 {
                                 step="0.01"
                                 placeholder="180.00"
                                 aria-describedby="existing-debt-payments-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
