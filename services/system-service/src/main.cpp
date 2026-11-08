@@ -3,9 +3,11 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <string>
+#include <cerrno>
 
 /**
- * LINUX SOCKET basics:
+ * POISY-Socket-API basics:
  * 
  * socket():   // erzeugt einen kommunikations endpunkt und gibt den file descriptor zurück.
  * bind():      // verknüpft einen socket mit einer netzwerkadress und portnummer
@@ -110,6 +112,65 @@ int main() {
     std::cout << "CLIENT FD: " << client_fd << std::endl;
     std::cout << "Client IP: " << client_ip << std::endl;
     std::cout << "Client Port: " << ntohs(client_address.sin_port) << std::endl;
+
+
+    // ===== reading =====
+    char buffer[1024]{};
+
+    ssize_t bytes_recieved = recv(
+        client_fd,
+        buffer,
+        sizeof(buffer),
+        0
+    );
+
+    if (bytes_recieved == -1) {
+        std::perror("recv");
+    } else if (bytes_recieved == 0) {
+        std::cout << "Client closed the connection" << std::endl;
+    } else {
+        std::cout << "Received " << bytes_recieved << " bytes: " << std::endl;
+
+        std::cout.write(buffer, bytes_recieved) << std::endl;
+    }
+
+    // ===== sending =====
+    const std::string body = R"({"status":"ok"})";
+
+    std::string response = "HTTP/1.1 200 OK\r\n";
+    response += "Content-Type: application/json\r\n";
+    response += "Content-Length: " + std::to_string(body.size()) + "\r\n";
+    response += "\r\n";
+    response += body;
+
+    size_t total_send = 0;
+
+    while (total_send < response.size()) {
+        ssize_t bytes_send = send(
+            client_fd,
+            response.data() + total_send,
+            response.size() - total_send,
+            MSG_NOSIGNAL
+        );
+
+        if (bytes_send == -1) {
+            if(errno == EINTR) {
+                continue;
+            }
+
+            std::perror("send");
+            break;
+        }
+
+        if (bytes_send == 0) {
+            std::cerr << "No bytes send" << std::endl;
+            break;
+        }
+
+        total_send += static_cast<size_t>(bytes_send);
+    }
+
+    std::cout << "Sent " << total_send << " bytes" << std::endl;
 
     // Close connection
     close(client_fd);
