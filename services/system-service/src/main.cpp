@@ -8,6 +8,8 @@
 #include <array>
 #include <sys/time.h>
 
+#include "HttpRequest.h"
+
 /**
  * POSIX-Socket-API basics:
  * 
@@ -17,14 +19,10 @@
  * close():     // gibt den socket-descriptor frei und leitet das schließen der eigentlichen netzwerverbindung ein.
  *
  * g++ command:
- * g++ -Wall -Wextra -Wpedantic src/main.cpp -o system-service
+ * g++ -Wall -Wextra -Wpedantic src/main.cpp src/HttpRequest.cpp -o system-service
  */
 
- struct HttpRequest {
-    std::string method;
-    std::string target;
-    std::string version;
-};
+
 
 enum class ReadResult {
     Complete,   // Header vollständig gelesen
@@ -234,6 +232,10 @@ int main() {
 
         std::cout << "Complete HTTP headers received: " << std::endl;
         std::cout << request_headers << std::endl;
+
+        HttpRequest headerStatus = HttpRequest::parse(request_headers);
+
+        std::cout << "HttpRequest: " << headerStatus.method << headerStatus.target << headerStatus.version << std::endl;
 
         // ===== sending =====
         const std::string body = R"({"status":"ok"})";
