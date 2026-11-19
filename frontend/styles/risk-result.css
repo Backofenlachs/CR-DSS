@@ -49,7 +49,7 @@
 
     background: color-mix(
         in srgb,
-        var(--color-success) 12%,
+        var(--color-text) 12%,
         var(--color-surface)
     );
 
@@ -83,13 +83,24 @@
 }
 
 .risk-assessment__decision-value {
-    color: var(--color-success);
+    color: #6b7280;
 
     font-size: 1.75rem;
     font-weight: 700;
     line-height: 1;
 }
 
+.risk-assessment__decision-value {
+    color: #6b7280;
+}
+
+.risk-assessment__decision-value.is-accepted {
+    color: #16a34a;
+}
+
+.risk-assessment__decision-value.is-declined {
+    color: #dc2626;
+}
 
 /* Risk score */
 
