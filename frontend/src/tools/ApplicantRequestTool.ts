@@ -67,13 +67,13 @@ export class ApplicantRequestTool extends BaseTool {
                     const applicantData: ApplicantRequestDataV010 = {
                         scoring_model: 'v0.1.0',
                         
-                        monthly_net_income: Number(formData.get("v010_monthly_net_income")),
-                        existing_monthly_debt_payments: Number(formData.get("v010_existing_monthly_debt_payments")),
-                        monthly_fixed_costs: Number(formData.get("v010_monthly_fixed_costs")),
+                        monthly_net_income: Number(formData.get("v010-monthly-net-income")),
+                        existing_monthly_debt_payments: Number(formData.get("v010-existing-monthly-debt-payments")),
+                        monthly_fixed_costs: Number(formData.get("v010-monthly-fixed-costs")),
 
-                        loan_amount: Number(formData.get("v010_loan_amount")),
-                        annual_interest_rate: Number(formData.get("v010_annual_interest_rate")),
-                        loan_term_months: Number(formData.get("v010_loan_term_months"))
+                        loan_amount: Number(formData.get("v010-loan-amount")),
+                        annual_interest_rate: Number(formData.get("v010-annual-interest-rate")),
+                        loan_term_months: Number(formData.get("v010-loan-term-months"))
                     }
 
                     console.log(applicantData);
@@ -86,16 +86,16 @@ export class ApplicantRequestTool extends BaseTool {
                     const applicantData: ApplicantRequestDataV020 = {
                         scoring_model: 'v0.2.0',
 
-                        monthly_net_income: Number(formData.get("monthly_net_income")),
-                        existing_monthly_debt_payments: Number(formData.get("existing_monthly_debt_payments")),
-                        monthly_fixed_costs: Number(formData.get("monthly_fixed_costs")),
-                        cash_reserve: Number(formData.get("cash_reserve")),
-                        employment_months: Number(formData.get("employment_months")),
-                        age: Number(formData.get("age")),
+                        monthly_net_income: Number(formData.get("v020-monthly-net-income")),
+                        existing_monthly_debt_payments: Number(formData.get("v020-existing-monthly-debt-payments")),
+                        monthly_fixed_costs: Number(formData.get("v020-monthly-fixed-costs")),
+                        cash_reserve: Number(formData.get("v020-cash-reserve")),
+                        employment_months: Number(formData.get("v020-employment-months")),
+                        age: Number(formData.get("v020-age")),
 
-                        loan_amount: Number(formData.get("loan_amount")),
-                        annual_interest_rate: Number(formData.get("annual_interest_rate")),
-                        loan_term_months: Number(formData.get("loan_term_months"))
+                        loan_amount: Number(formData.get("v020-loan-amount")),
+                        annual_interest_rate: Number(formData.get("v020-annual-interest-rate")),
+                        loan_term_months: Number(formData.get("v020-loan-term-months"))
                     }
 
                     await RiskAssessmentStore.evaluate(applicantData);

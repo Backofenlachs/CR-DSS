@@ -18,7 +18,7 @@ export class ApplicantRequestFormV010 {
                         <div class="applicant-request__input-wrapper">
                             <input
                                 id="v010-monthly-net-income"
-                                name="v010_monthly_net_income"
+                                name="v010-monthly-net-income"
                                 type="number"
                                 min="0"
                                 step="0.01"
@@ -49,7 +49,7 @@ export class ApplicantRequestFormV010 {
                         <div class="applicant-request__input-wrapper">
                             <input
                                 id="v010-monthly-fixed-costs"
-                                name="v010_monthly_fixed_costs"
+                                name="v010-monthly-fixed-costs"
                                 type="number"
                                 min="0"
                                 step="0.01"
@@ -80,7 +80,7 @@ export class ApplicantRequestFormV010 {
                         <div class="applicant-request__input-wrapper">
                             <input
                                 id="v010-existing-debt-payments"
-                                name="v010_existing_monthly_debt_payments"
+                                name="v010-existing-monthly-debt-payments"
                                 type="number"
                                 min="0"
                                 step="0.01"
@@ -120,7 +120,7 @@ export class ApplicantRequestFormV010 {
                         <div class="applicant-request__input-wrapper">
                             <input
                                 id="v010-loan-amount"
-                                name="v010_loan_amount"
+                                name="v010-loan-amount"
                                 type="number"
                                 min="0.01"
                                 step="0.01"
@@ -151,7 +151,7 @@ export class ApplicantRequestFormV010 {
                         <div class="applicant-request__input-wrapper">
                             <input
                                 id="v010-annual-interest-rate"
-                                name="v010_annual_interest_rate"
+                                name="v010-annual-interest-rate"
                                 type="number"
                                 min="0"
                                 max="100"
@@ -183,7 +183,7 @@ export class ApplicantRequestFormV010 {
                         <div class="applicant-request__input-wrapper">
                             <input
                                 id="v010-loan-term-months"
-                                name="v010_loan_term_months"
+                                name="v010-loan-term-months"
                                 type="number"
                                 min="1"
                                 step="1"
