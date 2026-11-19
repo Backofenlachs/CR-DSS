@@ -37,14 +37,17 @@ export class ApplicantRequestTool extends BaseTool {
             const model: ScoringModelVersion | null =
                 value === 'v0.1.0' || value === 'v0.2.0' ? value : null;
                     
-            
+        
             this.selectedScoringModel = model;
 
             // Hide all sections
             $root.find('[data-scoring-version]').prop('hidden', true);
+            $root.find('[data-scoring-version]').prop('disabled', true);
 
             // Show selected section or fallback
-            $root.find(`[data-scoring-version="${model ?? '---'}"]`).prop('hidden', false)
+            $root.find(`[data-scoring-version="${model ?? '---'}"]`).prop('hidden', false);
+            $root.find(`[data-scoring-version="${model ?? '---'}"]`).prop('disabled', false);
+
         });
 
 
@@ -64,14 +67,16 @@ export class ApplicantRequestTool extends BaseTool {
                     const applicantData: ApplicantRequestDataV010 = {
                         scoring_model: 'v0.1.0',
                         
-                        monthly_net_income: Number(formData.get("monthly_net_income")),
-                        existing_monthly_debt_payments: Number(formData.get("existing_monthly_debt_payments")),
-                        monthly_fixed_costs: Number(formData.get("monthly_fixed_costs")),
+                        monthly_net_income: Number(formData.get("v010_monthly_net_income")),
+                        existing_monthly_debt_payments: Number(formData.get("v010_existing_monthly_debt_payments")),
+                        monthly_fixed_costs: Number(formData.get("v010_monthly_fixed_costs")),
 
-                        loan_amount: Number(formData.get("loan_amount")),
-                        annual_interest_rate: Number(formData.get("annual_interest_rate")),
-                        loan_term_months: Number(formData.get("loan_term_months"))
+                        loan_amount: Number(formData.get("v010_loan_amount")),
+                        annual_interest_rate: Number(formData.get("v010_annual_interest_rate")),
+                        loan_term_months: Number(formData.get("v010_loan_term_months"))
                     }
+
+                    console.log(applicantData);
 
                     await RiskAssessmentStore.evaluate(applicantData);
                     break;

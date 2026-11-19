@@ -11,14 +11,14 @@ export class ApplicantRequestFormV010 {
                 <div class="applicant-request__fields">
                     <!-- Monthly net income -->
                     <div class="applicant-request__field">
-                        <label for="monthly-net-income">
+                        <label for="v010-monthly-net-income">
                             Monthly net income
                         </label>
 
                         <div class="applicant-request__input-wrapper">
                             <input
-                                id="monthly-net-income"
-                                name="monthly_net_income"
+                                id="v010-monthly-net-income"
+                                name="v010_monthly_net_income"
                                 type="number"
                                 min="0"
                                 step="0.01"
@@ -33,7 +33,7 @@ export class ApplicantRequestFormV010 {
                         </div>
 
                         <small
-                            id="monthly-net-income-hint"
+                            id="v010-monthly-net-income-hint"
                             class="applicant-request__hint"
                         >
                             Applicant's regular monthly income after taxes.
@@ -42,14 +42,14 @@ export class ApplicantRequestFormV010 {
 
                     <!-- Monthly fixed costs -->
                     <div class="applicant-request__field">
-                        <label for="monthly-fixed-costs">
+                        <label for="v010-monthly-fixed-costs">
                             Monthly fixed costs
                         </label>
 
                         <div class="applicant-request__input-wrapper">
                             <input
-                                id="monthly-fixed-costs"
-                                name="monthly_fixed_costs"
+                                id="v010-monthly-fixed-costs"
+                                name="v010_monthly_fixed_costs"
                                 type="number"
                                 min="0"
                                 step="0.01"
@@ -64,7 +64,7 @@ export class ApplicantRequestFormV010 {
                         </div>
 
                         <small
-                            id="monthly-fixed-costs-hint"
+                            id="v010-monthly-fixed-costs-hint"
                             class="applicant-request__hint"
                         >
                             Recurring living costs excluding debt payments.
@@ -73,14 +73,14 @@ export class ApplicantRequestFormV010 {
 
                     <!-- Existing monthly debt payments -->
                     <div class="applicant-request__field">
-                        <label for="existing-debt-payments">
+                        <label for="v010-existing-debt-payments">
                             Existing debt payments
                         </label>
 
                         <div class="applicant-request__input-wrapper">
                             <input
-                                id="existing-debt-payments"
-                                name="existing_monthly_debt_payments"
+                                id="v010-existing-debt-payments"
+                                name="v010_existing_monthly_debt_payments"
                                 type="number"
                                 min="0"
                                 step="0.01"
@@ -95,7 +95,7 @@ export class ApplicantRequestFormV010 {
                         </div>
 
                         <small
-                            id="existing-debt-payments-hint"
+                            id="v010-existing-debt-payments-hint"
                             class="applicant-request__hint"
                         >
                             Total monthly payments for existing credit obligations.
@@ -113,14 +113,14 @@ export class ApplicantRequestFormV010 {
                 <div class="applicant-request__fields">
                     <!-- Loan amount -->
                     <div class="applicant-request__field">
-                        <label for="loan-amount">
+                        <label for="v010-loan-amount">
                             Loan amount
                         </label>
 
                         <div class="applicant-request__input-wrapper">
                             <input
-                                id="loan-amount"
-                                name="loan_amount"
+                                id="v010-loan-amount"
+                                name="v010_loan_amount"
                                 type="number"
                                 min="0.01"
                                 step="0.01"
@@ -135,7 +135,7 @@ export class ApplicantRequestFormV010 {
                         </div>
 
                         <small
-                            id="loan-amount-hint"
+                            id="v010-loan-amount-hint"
                             class="applicant-request__hint"
                         >
                             Principal amount requested by the applicant.
@@ -144,14 +144,14 @@ export class ApplicantRequestFormV010 {
 
                     <!-- Annual interest rate -->
                     <div class="applicant-request__field">
-                        <label for="annual-interest-rate">
+                        <label for="v010-annual-interest-rate">
                             Annual interest rate
                         </label>
 
                         <div class="applicant-request__input-wrapper">
                             <input
-                                id="annual-interest-rate"
-                                name="annual_interest_rate"
+                                id="v010-annual-interest-rate"
+                                name="v010_annual_interest_rate"
                                 type="number"
                                 min="0"
                                 max="100"
@@ -167,7 +167,7 @@ export class ApplicantRequestFormV010 {
                         </div>
 
                         <small
-                            id="annual-interest-rate-hint"
+                            id="v010-annual-interest-rate-hint"
                             class="applicant-request__hint"
                         >
                             Nominal annual interest rate in percent.
@@ -176,14 +176,14 @@ export class ApplicantRequestFormV010 {
 
                     <!-- Loan term months-->
                     <div class="applicant-request__field">
-                        <label for="loan-term-months">
+                        <label for="v010-loan-term-months">
                             Loan term
                         </label>
 
                         <div class="applicant-request__input-wrapper">
                             <input
-                                id="loan-term-months"
-                                name="loan_term_months"
+                                id="v010-loan-term-months"
+                                name="v010_loan_term_months"
                                 type="number"
                                 min="1"
                                 step="1"
@@ -198,7 +198,7 @@ export class ApplicantRequestFormV010 {
                         </div>
 
                         <small
-                            id="loan-term-months-hint"
+                            id="v010-loan-term-months-hint"
                             class="applicant-request__hint"
                         >
                             Requested repayment period in full months.

@@ -84,13 +84,13 @@ export class ApplicantRequestView {
                         </div>
                     </section>
 
-                    <div data-scoring-version="v0.1.0" hidden>
+                    <fieldset data-scoring-version="v0.1.0" hidden disabled>
                         ${this.fromV010.render()}
-                    </div>
+                    </fieldset>
 
-                    <div data-scoring-version="v0.2.0" hidden>
+                    <fieldset data-scoring-version="v0.2.0" hidden disabled>
                         ${this.formV020.render()}
-                    </div>
+                    </fieldset>
 
                     <div data-scoring-version="---"> 
                         No Scoring model selected
