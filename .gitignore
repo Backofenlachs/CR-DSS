@@ -12,6 +12,7 @@ venv/
 data/
 !data/loan-request-example.json
 !data/loan-result-example.json
+
 # frontend TSC
 frontend/node_modules/
 frontend/dist/

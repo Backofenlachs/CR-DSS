@@ -19,6 +19,10 @@ class ResidualIncomeAfterLoanMetric(CalculationMetric):
     ]
 
     def _calculate(self, data):
+        if data["monthly_fixed_costs"] < 0:
+            raise ValueError(
+                "monthly_fixed_costs must not be negative"
+            )
 
         residual_income_after_loan = (
             data["monthly_net_income"]
