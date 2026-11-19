@@ -19,13 +19,12 @@ export class ApplicantRequestFormV020 {
                                 id="age"
                                 name="age"
                                 type="number"
-                                min="18"
-                                max="120"
+                                min="18" 
                                 step="1"
                                 placeholder="35"
                                 aria-describedby="age-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 years
@@ -55,8 +54,8 @@ export class ApplicantRequestFormV020 {
                                 step="1"
                                 placeholder="48"
                                 aria-describedby="employment-months-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 months
@@ -91,12 +90,12 @@ export class ApplicantRequestFormV020 {
                                 id="monthly-net-income"
                                 name="monthly_net_income"
                                 type="number"
-                                min="0"
+                                min="0.01"
                                 step="0.01"
                                 placeholder="3800.00"
                                 aria-describedby="monthly-net-income-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -126,8 +125,8 @@ export class ApplicantRequestFormV020 {
                                 step="0.01"
                                 placeholder="1350.00"
                                 aria-describedby="monthly-fixed-costs-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -157,8 +156,8 @@ export class ApplicantRequestFormV020 {
                                 step="0.01"
                                 placeholder="180.00"
                                 aria-describedby="existing-debt-payments-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -188,8 +187,8 @@ export class ApplicantRequestFormV020 {
                                 step="0.01"
                                 placeholder="18000.00"
                                 aria-describedby="cash-reserve-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -224,12 +223,13 @@ export class ApplicantRequestFormV020 {
                                 id="loan-amount"
                                 name="loan_amount"
                                 type="number"
-                                min="0.01"
-                                step="0.01"
+                                min="500"
+                                max="1000000"
+                                step="1"
                                 placeholder="12000.00"
                                 aria-describedby="loan-amount-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 EUR
@@ -256,12 +256,12 @@ export class ApplicantRequestFormV020 {
                                 name="annual_interest_rate"
                                 type="number"
                                 min="0"
-                                max="100"
+                                max=""
                                 step="0.01"
                                 placeholder="5.20"
                                 aria-describedby="annual-interest-rate-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 %
@@ -288,11 +288,12 @@ export class ApplicantRequestFormV020 {
                                 name="loan_term_months"
                                 type="number"
                                 min="1"
+                                max="120"
                                 step="1"
                                 placeholder="36"
                                 aria-describedby="loan-term-months-hint"
-                                ><!--required
-                            -->
+                                required
+                            >
 
                             <span class="applicant-request__input-unit">
                                 months
