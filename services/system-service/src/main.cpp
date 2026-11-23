@@ -231,11 +231,22 @@ int main() {
         }
 
         std::cout << "Complete HTTP headers received: " << std::endl;
-        std::cout << request_headers << std::endl;
+        HttpRequest request;
+        HttpRequest::ParseStatus parse_status = HttpRequest::parse(request_headers, request);
+        
+        if (parse_status != HttpRequest::ParseStatus::Success) {
+            std::cerr << "Failed to parse HTTP request\n";
+            close(client_fd);
+        }
 
-        HttpRequest headerStatus = HttpRequest::parse(request_headers);
 
-        std::cout << "HttpRequest: " << headerStatus.method << headerStatus.target << headerStatus.version << std::endl;
+        std::cout << "=== REQUEST START (" << request_headers.size() << " Bytes) ===\n";
+        std::cout << request.method << " " << request.target << " " << request.version << std::endl;
+
+        for (const auto& [k, v] : request.headers) {
+            std::cout << k << " => " << v << "\n";
+        }
+        std::cout << "=== REQUEST END ===" << std::endl;
 
         // ===== sending =====
         const std::string body = R"({"status":"ok"})";
@@ -243,9 +254,9 @@ int main() {
         std::string response = "HTTP/1.1 200 OK\r\n";
         response += "Content-Type: application/json\r\n";
         response += "Content-Length: " + std::to_string(body.size()) + "\r\n";
+        response += "Connection: close\r\n";
         response += "\r\n";
         response += body;
-        response += "Connection: close\r\n";
 
         size_t total_send = 0;
 

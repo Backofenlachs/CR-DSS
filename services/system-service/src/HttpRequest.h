@@ -4,6 +4,9 @@
 #define HTTPREQUEST_H
 
 #include<string>
+#include<unordered_map>
+
+
 
 struct HttpRequest
 {
@@ -11,7 +14,15 @@ struct HttpRequest
     std::string target;
     std::string version;
     
-    static HttpRequest parse(const std::string& request_string);
+    std::unordered_map<std::string, std::string> headers;
+
+    enum class ParseStatus {
+        Success,
+        BadRequest,
+        Incomplete
+    };
+
+    static ParseStatus parse(const std::string& request_string, HttpRequest& request);
 };
 
 #endif
