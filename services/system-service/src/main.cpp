@@ -9,6 +9,7 @@
 #include <sys/time.h>
 
 #include "HttpRequest.h"
+#include "HttpResponse.h"
 
 /**
  * POSIX-Socket-API basics:
@@ -19,7 +20,7 @@
  * close():     // gibt den socket-descriptor frei und leitet das schließen der eigentlichen netzwerverbindung ein.
  *
  * g++ command:
- * g++ -Wall -Wextra -Wpedantic src/main.cpp src/HttpRequest.cpp -o system-service
+ * g++ -Wall -Wextra -Wpedantic src/main.cpp src/HttpRequest.cpp src/HttpResponse.cpp -o system-service
  */
 
 
@@ -32,7 +33,15 @@ enum class ReadResult {
     Error       // Sonstiger Socket-Fehler
 };
 
+enum class WriteResult {
+    Success,
+    Error
+};
+
+
 ReadResult readHttpHeaders (int client_fd, std::string& headers) {
+    // TODO: change function name to read_data
+
     constexpr size_t MAX_HEADER_SIZE = 8192;   // 8 KiB
 
     std::array<char, 1024> buffer{};
@@ -86,6 +95,40 @@ ReadResult readHttpHeaders (int client_fd, std::string& headers) {
             return ReadResult::TooLarge;
         }
     }
+}
+
+WriteResult write_data(int client_fd, const std::string& data) {
+
+    size_t total_send = 0;
+
+    while (total_send < data.size()) {
+        ssize_t bytes_send = send(
+            client_fd,
+            data.data() + total_send,
+            data.size() - total_send,
+            MSG_NOSIGNAL
+        );
+
+        if (bytes_send == -1) {
+            if(errno == EINTR) {
+                continue;
+            }
+
+            std::perror("send");
+            return WriteResult::Error;
+        }
+
+        if (bytes_send == 0) {
+            std::cerr << "No bytes send" << std::endl;
+            return WriteResult::Error;
+        }
+
+        total_send += static_cast<size_t>(bytes_send);
+    }
+
+    std::cout << "Sent " << total_send << " bytes" << std::endl;
+    return WriteResult::Success;
+
 }
 
 int main() {
@@ -237,55 +280,33 @@ int main() {
         if (parse_status != HttpRequest::ParseStatus::Success) {
             std::cerr << "Failed to parse HTTP request\n";
             close(client_fd);
+            continue;
         }
 
 
         std::cout << "=== REQUEST START (" << request_headers.size() << " Bytes) ===\n";
         std::cout << request.method << " " << request.target << " " << request.version << std::endl;
-
         for (const auto& [k, v] : request.headers) {
             std::cout << k << " => " << v << "\n";
         }
         std::cout << "=== REQUEST END ===" << std::endl;
 
-        // ===== sending =====
+        // TODO: Implement Router.dispatch here
         const std::string body = R"({"status":"ok"})";
+        HttpResponse response{};
+        response.status = 200;
+        response.body = body;
 
-        std::string response = "HTTP/1.1 200 OK\r\n";
-        response += "Content-Type: application/json\r\n";
-        response += "Content-Length: " + std::to_string(body.size()) + "\r\n";
-        response += "Connection: close\r\n";
-        response += "\r\n";
-        response += body;
 
-        size_t total_send = 0;
+        // ===== sending =====
+        std::string response_string = response.serialize();
+        WriteResult write_result = write_data(client_fd, response_string);
 
-        while (total_send < response.size()) {
-            ssize_t bytes_send = send(
-                client_fd,
-                response.data() + total_send,
-                response.size() - total_send,
-                MSG_NOSIGNAL
-            );
-
-            if (bytes_send == -1) {
-                if(errno == EINTR) {
-                    continue;
-                }
-
-                std::perror("send");
-                break;
-            }
-
-            if (bytes_send == 0) {
-                std::cerr << "No bytes send" << std::endl;
-                break;
-            }
-
-            total_send += static_cast<size_t>(bytes_send);
+        if (write_result != WriteResult::Success) {
+            std::cerr << "Failed to write response \n";
+            close(client_fd);
+            continue;
         }
-
-        std::cout << "Sent " << total_send << " bytes" << std::endl;
 
         close(client_fd);
     }

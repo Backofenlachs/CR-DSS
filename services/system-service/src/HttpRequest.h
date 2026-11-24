@@ -8,8 +8,8 @@
 
 
 
-struct HttpRequest
-{
+struct HttpRequest {
+    
     std::string method;
     std::string target;
     std::string version;
